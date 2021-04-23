@@ -22,14 +22,6 @@ npx create-react-app my-app --template doly
 yarn create react-app my-app --template doly
 ```
 
-## 本地测试
-
-> [Custom Templates]
-
-```bash
-npx create-react-app my-app --template file:../path/to/your/template/cra-template-[template-name]
-```
-
 ## 目录结构
 
 ```
@@ -149,10 +141,22 @@ babel: {
 
 mock 数据可以让前端不依赖服务接口的情况下进行开发，可自行伪造边界数据，极大提升本地开发效率和质量。
 
+## 本地测试
+
+> [Custom Templates]
+
+```bash
+npx create-react-app my-app --template file:../path/to/your/template/cra-template-[template-name]
+```
+
 ## License
 
 MIT License
 
+[craco]: https://github.com/gsoft-inc/craco
+[pro]: https://beta-pro.ant.design/
+[create react app]: https://create-react-app.dev/
+[custom templates]: https://create-react-app.dev/docs/custom-templates
 [adding custom environment variables]: https://create-react-app.dev/docs/adding-custom-environment-variables
 [supported browsers and features]: https://create-react-app.dev/docs/supported-browsers-features/#supported-language-features
 [code splitting in create react app]: https://serverless-stack.com/chapters/code-splitting-in-create-react-app.html
