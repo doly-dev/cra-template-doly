@@ -1,8 +1,14 @@
 {
   "name": "cra-template-doly",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "repository": "git@github.com:doly-dev/cra-template-doly.git",
+  "keywords": [
+    "create-react-app",
+    "react",
+    "template",
+    "doly"
+  ],
   "author": "caijf <369756941@qq.com>",
   "license": "MIT",
   "bugs": {

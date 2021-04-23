@@ -153,15 +153,21 @@ mock 数据可以让前端不依赖服务接口的情况下进行开发，可自
 
 MIT License
 
-[craco]: https://github.com/gsoft-inc/craco
-[pro]: https://beta-pro.ant.design/
-[create react app]: https://create-react-app.dev/
-[custom templates]: https://create-react-app.dev/docs/custom-templates
-[react-app-polyfill]: https://github.com/facebook/create-react-app/tree/master/packages/react-app-polyfill
+[adding custom environment variables]: https://create-react-app.dev/docs/adding-custom-environment-variables
 [supported browsers and features]: https://create-react-app.dev/docs/supported-browsers-features/#supported-language-features
+[code splitting in create react app]: https://serverless-stack.com/chapters/code-splitting-in-create-react-app.html
+[adding a css modules stylesheet]: https://create-react-app.dev/docs/adding-a-css-modules-stylesheet
+[advanced configuration]: https://create-react-app.dev/docs/advanced-configuration
+[react-app-polyfill]: https://github.com/facebook/create-react-app/tree/master/packages/react-app-polyfill
+[ant-design]: https://ant-design.gitee.io/
+[antd 定制主题]: https://ant-design.gitee.io/docs/react/customize-theme-cn
+[antd-mobile 定制主题]: https://mobile.ant.design/docs/react/customize-theme-cn
 [vconsole]: https://github.com/Tencent/vConsole
 [eruda]: https://github.com/liriliri/eruda
+[mocker-api]: https://github.com/jaywcjlove/mocker-api
 [mockjs]: https://github.com/nuysoft/Mock/wiki
+[env-cmd]: https://github.com/toddbluhm/env-cmd
+[babel-plugin-import]: https://github.com/ant-design/babel-plugin-import
 [hox]: https://github.com/umijs/hox
 [mobx]: https://github.com/mobxjs/mobx
 [mobx-state-tree]: https://github.com/mobxjs/mobx-state-tree
