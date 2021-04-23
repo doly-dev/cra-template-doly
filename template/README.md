@@ -1,34 +1,40 @@
 # cra-template-doly
 
-基于 [Create React App] + [craco] 扩展的脚手架，拥有接近 [Pro] 的开发体验。
+## 使用须知
 
-## 特性
+在实际项目中，切记一定要修改 `public` 下的文件，`favicon.ico`、`index.html`、`logo.png`、`mainfest.json` 。
 
-- 基于 Create React App 脚手架扩展，工具维护升级更轻松
-- 使用 TypeScript 开发，提供类型定义文件，支持类型及属性智能提示，方便业务开发
-- 多运行环境管理，预置 `default` `dev` `test` `prod` 环境
-- 完整的目录结构，让项目代码组织更规范
-- 配备 mock 和 proxy，使前后端分离的开发和联调更有效率
-- 支持 less & module.less
-- 支持 antd/antd-mobile 主题配置
+还有根据项目需求修改 `config/env.js`、`config/zip.js`、`config/proxy.js.js` 等配置。
 
-## 使用
+## 开发
 
-```bash
-npx create-react-app my-app --template doly
+在项目目录中，你可以运行:
 
-# or
+### `yarn start`
 
-yarn create react-app my-app --template doly
-```
+在开发模式下运行应用程序。
 
-## 本地测试
+默认设置 `config/env.js` 的 `default` 环境变量。
 
-> [Custom Templates]
+其他开发模式脚本：
 
-```bash
-npx create-react-app my-app --template file:../path/to/your/template/cra-template-[template-name]
-```
+- `yarn start:no-mock` - 不启用 mock 运行
+- `yarn start:dev` - 设置 `config/env.js` 的 `default` 和 `dev` 环境变量，并且不启用 mock 运行
+- `yarn start:test` - 设置 `config/env.js` 的 `default` 和 `test` 环境变量，并且不启用 mock 运行
+
+你也可以自定义其他开发模式的脚本。
+
+### `yarn build`
+
+将应用程序构建到 `dist` 文件夹。
+
+默认设置 `config/env.js` 的 `default` 和 `prod` 环境变量。
+
+### `yarn zip`
+
+> 请在 `config/zip.js` 对构建结果的打包进行配置。
+
+将构建结果 `dist` 目录下的文件，打包到 `zip/{package.name}-{package.version}.zip` 中，默认忽略 `.DS_Store` 文件。
 
 ## 目录结构
 
@@ -149,19 +155,21 @@ babel: {
 
 mock 数据可以让前端不依赖服务接口的情况下进行开发，可自行伪造边界数据，极大提升本地开发效率和质量。
 
-## License
-
-MIT License
-
-[craco]: https://github.com/gsoft-inc/craco
-[pro]: https://beta-pro.ant.design/
-[create react app]: https://create-react-app.dev/
-[custom templates]: https://create-react-app.dev/docs/custom-templates
-[react-app-polyfill]: https://github.com/facebook/create-react-app/tree/master/packages/react-app-polyfill
+[adding custom environment variables]: https://create-react-app.dev/docs/adding-custom-environment-variables
 [supported browsers and features]: https://create-react-app.dev/docs/supported-browsers-features/#supported-language-features
+[code splitting in create react app]: https://serverless-stack.com/chapters/code-splitting-in-create-react-app.html
+[adding a css modules stylesheet]: https://create-react-app.dev/docs/adding-a-css-modules-stylesheet
+[advanced configuration]: https://create-react-app.dev/docs/advanced-configuration
+[react-app-polyfill]: https://github.com/facebook/create-react-app/tree/master/packages/react-app-polyfill
+[ant-design]: https://ant-design.gitee.io/
+[antd 定制主题]: https://ant-design.gitee.io/docs/react/customize-theme-cn
+[antd-mobile 定制主题]: https://mobile.ant.design/docs/react/customize-theme-cn
 [vconsole]: https://github.com/Tencent/vConsole
 [eruda]: https://github.com/liriliri/eruda
+[mocker-api]: https://github.com/jaywcjlove/mocker-api
 [mockjs]: https://github.com/nuysoft/Mock/wiki
+[env-cmd]: https://github.com/toddbluhm/env-cmd
+[babel-plugin-import]: https://github.com/ant-design/babel-plugin-import
 [hox]: https://github.com/umijs/hox
 [mobx]: https://github.com/mobxjs/mobx
 [mobx-state-tree]: https://github.com/mobxjs/mobx-state-tree

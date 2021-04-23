@@ -1,0 +1,102 @@
+{
+  "package": {
+    "scripts": {
+      "start": "nodemon --exec \"env-cmd -r ./config/env.js -e default craco start\"",
+      "start:no-mock": "cross-env MOCK=none nodemon --exec \"env-cmd -r ./config/env.js -e default craco start\"",
+      "start:dev": "cross-env MOCK=none nodemon --exec \"env-cmd -r ./config/env.js -e default,dev craco start\"",
+      "start:test": "cross-env MOCK=none nodemon --exec \"env-cmd -r ./config/env.js -e default,test craco start\"",
+      "build": "env-cmd -r ./config/env.js -e default,prod craco build",
+      "test": "craco test",
+      "eject": "react-scripts eject",
+      "zip": "node ./config/zip.js",
+      "analyze": "source-map-explorer 'dist/static/js/*.js'",
+      "commit": "cz",
+      "precommit": "lint-staged"
+    },
+    "cracoConfig": "config/config.js",
+    "nodemonConfig": {
+      "ignore": "config/zip.js",
+      "watch": "config"
+    },
+    "browserslist": {
+      "production": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ],
+      "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ]
+    },
+    "lint-staged": {
+      "**/*.less": "stylelint --syntax less",
+      "**/*.css": "stylelint --syntax css",
+      "src/**/*.{js,jsx,ts,tsx,json,css,scss,sass,less,md}": [
+        "prettier --write"
+      ]
+    },
+    "husky": {
+      "hooks": {
+        "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+      }
+    },
+    "config": {
+      "commitizen": {
+        "path": "./node_modules/cz-conventional-changelog"
+      }
+    },
+    "dependencies": {
+      "@loadable/component": "^5.14.1",
+      "antd-mobile": "^2.3.4",
+      "axios": "^0.21.1",
+      "rc-hooks": "^0.8.3",
+      "react": "^17.0.1",
+      "react-dom": "^17.0.1",
+      "react-router-dom": "5",
+      "react-router-transition": "^2.1.0",
+      "store2": "^2.12.0"
+    },
+    "devDependencies": {
+      "@commitlint/cli": "^12.0.1",
+      "@commitlint/config-conventional": "^12.0.1",
+      "@craco/craco": "^6.1.1",
+      "@testing-library/jest-dom": "^5.11.4",
+      "@testing-library/react": "^11.1.0",
+      "@testing-library/user-event": "^12.1.10",
+      "@types/jest": "^26.0.15",
+      "@types/loadable__component": "^5.13.3",
+      "@types/node": "^12.0.0",
+      "@types/react": "^17.0.0",
+      "@types/react-dom": "^17.0.0",
+      "@types/react-router-dom": "^5.1.7",
+      "@types/react-router-transition": "^2.1.0",
+      "archiver": "^5.3.0",
+      "babel-plugin-import": "^1.13.3",
+      "chalk": "^4.1.0",
+      "craco-less": "^1.17.1",
+      "cross-env": "^7.0.3",
+      "cz-conventional-changelog": "^3.3.0",
+      "env-cmd": "^10.1.0",
+      "glob": "^7.1.6",
+      "husky": "4",
+      "lint-staged": "^10.5.4",
+      "mkdirp": "^1.0.4",
+      "mocker-api": "^2.8.3",
+      "nodemon": "^2.0.7",
+      "prettier": "^2.2.1",
+      "react-scripts": "4.0.3",
+      "source-map-explorer": "^2.5.2",
+      "stylelint": "^13.12.0",
+      "stylelint-config-css-modules": "^2.2.0",
+      "stylelint-config-prettier": "^8.0.2",
+      "stylelint-config-standard": "^21.0.0",
+      "stylelint-declaration-block-no-ignored-properties": "^2.3.0",
+      "stylelint-no-unsupported-browser-features": "^4.1.4",
+      "typescript": "^4.1.2",
+      "web-vitals": "^1.0.1",
+      "webpackbar": "^5.0.0-3"
+    }
+  }
+}
