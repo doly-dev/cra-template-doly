@@ -13,14 +13,13 @@ interface RequestOptions extends Omit<AxiosRequestConfig, 'url'> {
  * axios 文档：https://github.com/axios/axios#request-config
  */
 function request<T = any>(url: AxiosRequestConfig['url'], options?: RequestOptions): Promise<T> {
-  const { headersToken = false, ...restOptions } = options || {};
+  const { headersToken = true, ...restOptions } = options || {};
 
   const headers = {
     ...(headersToken
-      ? {}
-      : {
-          [HEADER_TOKEN_NAME]: getToken(),
-        }),
+      ? {
+        [HEADER_TOKEN_NAME]: getToken(),
+      } : {}),
     ...restOptions.headers,
   };
 

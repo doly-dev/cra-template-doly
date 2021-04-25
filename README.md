@@ -70,7 +70,7 @@ yarn create react-app my-app --template doly
   - [eruda]
 - mock 数据
   - [mockjs]
-- 页面切换动画
+- 路由 + 页面切换动画
   - [@wonder-ui/router]
   - [react-router-transition]
 - 动画效果
