@@ -1,6 +1,6 @@
 {
   "name": "cra-template-doly",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "index.js",
   "repository": "git@github.com:doly-dev/cra-template-doly.git",
   "keywords": [
