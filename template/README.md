@@ -155,6 +155,26 @@ babel: {
 
 mock 数据可以让前端不依赖服务接口的情况下进行开发，可自行伪造边界数据，极大提升本地开发效率和质量。
 
+### 怎么分析构建包大小？
+
+`config/env.js` 将生产环境配置的 `GENERATE_SOURCEMAP` 注释
+
+```javascript
+// GENERATE_SOURCEMAP: "false",
+```
+
+然后重新构建
+
+```bash
+yarn build
+```
+
+最后运行分析脚本
+
+```bash
+yarn analyze
+```
+
 [adding custom environment variables]: https://create-react-app.dev/docs/adding-custom-environment-variables
 [supported browsers and features]: https://create-react-app.dev/docs/supported-browsers-features/#supported-language-features
 [code splitting in create react app]: https://serverless-stack.com/chapters/code-splitting-in-create-react-app.html

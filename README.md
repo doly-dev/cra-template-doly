@@ -141,6 +141,26 @@ babel: {
 
 mock 数据可以让前端不依赖服务接口的情况下进行开发，可自行伪造边界数据，极大提升本地开发效率和质量。
 
+### 怎么分析构建包大小？
+
+`config/env.js` 将生产环境配置的 `GENERATE_SOURCEMAP` 注释
+
+```javascript
+// GENERATE_SOURCEMAP: "false",
+```
+
+然后重新构建
+
+```bash
+yarn build
+```
+
+最后运行分析脚本
+
+```bash
+yarn analyze
+```
+
 ## 本地测试
 
 > [Custom Templates]
@@ -162,6 +182,7 @@ MIT License
 [code splitting in create react app]: https://serverless-stack.com/chapters/code-splitting-in-create-react-app.html
 [adding a css modules stylesheet]: https://create-react-app.dev/docs/adding-a-css-modules-stylesheet
 [advanced configuration]: https://create-react-app.dev/docs/advanced-configuration
+[analyzing the bundle size]: https://create-react-app.dev/docs/analyzing-the-bundle-size
 [react-app-polyfill]: https://github.com/facebook/create-react-app/tree/master/packages/react-app-polyfill
 [ant-design]: https://ant-design.gitee.io/
 [antd 定制主题]: https://ant-design.gitee.io/docs/react/customize-theme-cn
