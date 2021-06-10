@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Card, Icon, WhiteSpace } from 'antd-mobile';
 import { useAsync } from 'rc-hooks';
 import { useParams } from 'react-router-dom';
+import PageContainer from '@/components/PageContainer';
 import { getReposByName } from '@/services/repos';
 
 const DetailPage: React.FC = () => {
@@ -17,7 +18,7 @@ const DetailPage: React.FC = () => {
   }
 
   return (
-    <>
+    <PageContainer>
       <WhiteSpace />
       <Card full>
         <Card.Header
@@ -28,7 +29,7 @@ const DetailPage: React.FC = () => {
         </Card.Body>
         <Card.Footer content={<a href={data?.html_url}>{data?.html_url}</a>} />
       </Card>
-    </>
+    </PageContainer>
   );
 };
 

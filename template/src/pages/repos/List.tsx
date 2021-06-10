@@ -2,6 +2,7 @@ import * as React from 'react';
 import { List, Icon } from 'antd-mobile';
 import { useAsync } from 'rc-hooks';
 import { useHistory } from 'react-router-dom';
+import PageContainer from '@/components/PageContainer';
 import { getReposList } from '@/services/repos';
 
 const { Item } = List;
@@ -23,23 +24,25 @@ const ListPage: React.FC = () => {
   }
 
   return (
-    <List renderHeader={() => 'doly-dev'}>
-      {
-        data && data.length > 0 && data.map(({ name, description }: any) => (
-          <Item
-            key={name}
-            arrow="horizontal"
-            multipleLine
-            onClick={() => {
-              history.push(`/repos/detail/${name}`);
-            }}
-          >
-            {name}
-            <Brief>{description}</Brief>
-          </Item>
-        ))
-      }
-    </List>
+    <PageContainer>
+      <List renderHeader={() => 'doly-dev'}>
+        {
+          data && data.length > 0 && data.map(({ name, description }: any) => (
+            <Item
+              key={name}
+              arrow="horizontal"
+              multipleLine
+              onClick={() => {
+                history.push(`/repos/detail/${name}`);
+              }}
+            >
+              {name}
+              <Brief>{description}</Brief>
+            </Item>
+          ))
+        }
+      </List>
+    </PageContainer>
   );
 };
 

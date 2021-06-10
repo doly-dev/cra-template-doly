@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Button, List, WhiteSpace, WingBlank, Toast } from 'antd-mobile';
 import { useHistory } from 'react-router-dom';
 import { useAsync } from 'rc-hooks';
+import PageContainer from '@/components/PageContainer';
 import { login } from '@/services/login';
 import { getToken, setToken, removeToken } from '@/utils/storage';
 import styles from './Home.module.less';
@@ -31,7 +32,7 @@ const Home: React.FC = () => {
   }
 
   return (
-    <>
+    <PageContainer>
       <div className={styles.title}>cra-template-doly</div>
       <List renderHeader={() => '示例页面'}>
         <Item
@@ -59,7 +60,7 @@ const Home: React.FC = () => {
           }
         </Button>
       </WingBlank>
-    </>
+    </PageContainer>
   );
 };
 

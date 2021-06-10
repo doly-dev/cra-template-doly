@@ -3,7 +3,6 @@ import '@/App.less';
 import { HashRouter, Route, Redirect } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
 import asyncComponent from '@/components/AsyncComponent';
-import PageContainer from '@/components/PageContainer';
 import { joinPaths } from '@/utils/utils';
 
 type RouteConfigType = {
@@ -54,7 +53,7 @@ function getRoutes(routeConfig?: typeof routes, parentPath: string = '') {
 
       if (C) {
         ret.push(<Route path={resolvePath} key={resolvePath} exact render={(routerProps) => {
-          return <PageContainer><C {...routerProps} /></PageContainer>
+          return <C {...routerProps} />
         }} {...rest} />)
       }
 
