@@ -1,9 +1,9 @@
 import React from 'react';
-import '@/App.less';
 import { HashRouter, Route, Redirect } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
 import asyncComponent from '@/components/AsyncComponent';
 import { joinPaths } from '@/utils/utils';
+import './App.less';
 
 type RouteConfigType = {
   name: string;
@@ -18,7 +18,7 @@ const routes: RouteConfigType[] = [
     path: '/',
     name: '首页',
     exact: true,
-    component: asyncComponent(() => import('@/pages/home'))
+    component: asyncComponent(() => import('./pages/home'))
   },
   {
     path: 'repos',
@@ -27,19 +27,19 @@ const routes: RouteConfigType[] = [
       {
         path: 'list',
         name: '仓库列表',
-        component: asyncComponent(() => import('@/pages/repos/List'))
+        component: asyncComponent(() => import('./pages/repos/List'))
       },
       {
         path: 'detail/:name',
         name: '仓库详情',
-        component: asyncComponent(() => import('@/pages/repos/Detail'))
+        component: asyncComponent(() => import('./pages/repos/Detail'))
       },
     ]
   },
   {
     path: '/404',
     name: '404',
-    component: asyncComponent(() => import('@/pages/404'))
+    component: asyncComponent(() => import('./pages/404'))
   },
 ];
 

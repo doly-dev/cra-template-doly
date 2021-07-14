@@ -1,7 +1,7 @@
 import React from 'react';
 import loadable from '@loadable/component';
-import PageLoading from '@/components/PageLoading';
 import type { LoadableComponent } from '@loadable/component';
+import PageLoading from '@/components/PageLoading';
 
 type AsyncComponentState = {
   hasError: boolean;

@@ -55,7 +55,6 @@ module.exports = {
     }
   },
   devServer: (devServerConfig, { env }) => {
-    console.log(MOCK, env);
     if (MOCK !== 'none' && env !== 'production') {
       devServerConfig.before = (app) => {
         apiMocker(app, glob.sync(path.resolve(cwd, 'mock/*.js')))

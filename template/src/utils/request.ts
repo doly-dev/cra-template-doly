@@ -1,6 +1,6 @@
 import axios from 'axios';
 import type { AxiosRequestConfig } from 'axios';
-import { getToken } from '@/utils/storage';
+import { getToken } from './storage';
 
 const HEADER_TOKEN_NAME = 'Authorization'; // 请求头token名称
 
