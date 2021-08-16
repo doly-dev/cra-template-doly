@@ -1,6 +1,6 @@
 {
   "singleQuote": true,
-  "trailingComma": "all",
+  "trailingComma": "none",
   "printWidth": 100,
   "proseWrap": "never",
   "endOfLine": "lf"
