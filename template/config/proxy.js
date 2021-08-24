@@ -4,7 +4,7 @@ module.exports = {
     '/api': {
       target: 'https://example.com',
       changeOrigin: true,
-      // secure: false,
+      secure: false,
       pathRewrite: { '^': '' },
     },
   },
@@ -12,6 +12,7 @@ module.exports = {
     '/api/': {
       target: 'your test url',
       changeOrigin: true,
+      secure: false,
       pathRewrite: { '^': '' },
     },
   }

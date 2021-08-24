@@ -18,7 +18,7 @@
 
 其他开发模式脚本：
 
-- `yarn start:no-mock` - 不启用 mock 运行
+- `yarn start:no-mock` - 设置 `config/env.js` 的 `default` 和 `dev` 环境变量，并且不启用 mock 运行
 - `yarn start:dev` - 设置 `config/env.js` 的 `default` 和 `dev` 环境变量，并且不启用 mock 运行
 - `yarn start:test` - 设置 `config/env.js` 的 `default` 和 `test` 环境变量，并且不启用 mock 运行
 
