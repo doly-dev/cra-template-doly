@@ -7,7 +7,7 @@ type AsyncComponentState = {
   hasError: boolean;
 };
 
-export default function asyncComponent<Props = any>(importComponent: () => any) {
+export default function asyncComponent<Props = any>(importComponent: () => Promise<any>) {
   class AsyncComponent extends React.Component<Props, AsyncComponentState> {
     component: LoadableComponent<Props>;
 

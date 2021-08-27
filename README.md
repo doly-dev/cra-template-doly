@@ -70,13 +70,11 @@ yarn create react-app my-app --template doly
   - [eruda]
 - mock 数据
   - [mockjs]
-- 路由 + 页面切换动画
-  - [@wonder-ui/router]
-  - [react-router-transition]
 - 动画效果
   - [react-transition-group]
   - [react-motion]
   - [react-spring]
+  - [Animate.css]
 
 ## 常见问题
 
@@ -161,6 +159,76 @@ yarn build
 yarn analyze
 ```
 
+### 如何接入 keep-alive ？
+
+> 参考 [react-activation](https://github.com/CJY0208/react-activation)
+
+1. 安装依赖
+
+```bash
+yarn add react-activation
+```
+
+2. `config/config.js` 配置 `babel`
+
+```javascript
+babel: {
+  plugins: [
+    // ...
+    'react-activation/babel',
+  ];
+}
+```
+
+3. 修改 `App.tsx`
+
+```typescript
+import { AliveScope } from 'react-activation';
+
+// ...
+// Router 下包裹 AliveScope 组件
+<Router>
+  <AliveScope>
+    <div className='App'>
+      <Routes routes={routes} ... />
+    </div>
+  </AliveScope>
+</Router>
+```
+
+4. 修改路由文件 `components/Routes`
+
+```typescript
+// ...
+// 引入模块
+import KeepAlive from 'react-activation';
+
+// ...
+// 页面包裹 KeepAlive 组件
+const routeView = (
+  <div className='router'>
+    <KeepAlive name={path}>
+      <C {...routeProps} />
+    </KeepAlive>
+  </div>
+);
+```
+
+### keep-alive 常见问题
+
+- [当前缓存页面 useActivate 会执行多次](https://github.com/CJY0208/react-activation/issues/111)
+
+由 `React.StrictMode` 影响。查阅 [严格模式](https://zh-hans.reactjs.org/docs/strict-mode.html#gatsby-focus-wrapper)
+
+- [用 KeepAlive 包裹的组件中，react-router-dom 无法获取 params](https://github.com/CJY0208/react-activation/issues/43)
+
+### 如何在工具模块中使用 `history`
+
+一些特殊场景下，需要在请求 或 工具方法中使用 `history` 处理跳转或其他操作，可参考 [router-store](https://www.npmjs.com/package/router-store)。
+
+- 如果使用 `react-router-dom@5`，需要安装 `history@4`。
+- 如果使用 `react-router-dom@6`，需要安装 `history@5`。
+
 ## 本地测试
 
 > [Custom Templates]
@@ -197,8 +265,7 @@ MIT License
 [mobx]: https://github.com/mobxjs/mobx
 [mobx-state-tree]: https://github.com/mobxjs/mobx-state-tree
 [redux]: https://github.com/reduxjs/redux
-[@wonder-ui/router]: https://www.npmjs.com/package/@wonder-ui/router
-[react-router-transition]: http://maisano.github.io/react-router-transition/
 [react-transition-group]: https://reactcommunity.org/react-transition-group/
 [react-motion]: https://github.com/chenglou/react-motion
 [react-spring]: https://github.com/react-spring/react-spring
+[animate.css]: https://animate.style/

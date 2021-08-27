@@ -1,0 +1,42 @@
+.router{
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+// ----- router slide start
+.router-slideIn-enter {
+  transform: translate3d(100%, 0, 0);
+  z-index: 2;
+}
+.router-slideIn-enter-active {
+  transform: translate3d(0, 0, 0);
+  transition: transform .3s;
+}
+.router-slideIn-exit {
+  transform: translate3d(-20%, 0, 0);
+  transition: transform .3s;
+  z-index: 1;
+}
+.router-slideIn-exit-done {
+  visibility: hidden;
+}
+
+.router-slideOut-enter {
+  transform: translate3d(-100%, 0, 0);
+  z-index: 2;
+}
+.router-slideOut-enter-active {
+  transform: translate3d(0, 0, 0);
+  transition: transform .3s;
+}
+.router-slideOut-exit {
+  transform: translate3d(20%, 0, 0);
+  transition: transform .3s;
+  z-index: 1;
+}
+.router-slideOut-exit-done {
+  visibility: hidden;
+}
+// ----- router slide end
+
