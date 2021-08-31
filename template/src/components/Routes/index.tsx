@@ -96,12 +96,12 @@ const Routes: React.FC<RoutesProps> = (props) => {
   const formattedRoutes = formatRoutes(routes);
 
   return (
-    <>
+    <div className='router-wrapper'>
       {formattedRoutes.map(route => (
         <AnimatedRoute animated={animated} {...route} key={route.path} />
       ))}
       <WrapperNoMatch routes={formattedRoutes} noMatch={noMatch} animated={animated} />
-    </>
+    </div>
   );
 }
 
