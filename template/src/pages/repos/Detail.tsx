@@ -5,9 +5,17 @@ import { useParams } from 'react-router-dom';
 import PageContainer from '@/components/PageContainer';
 import { getReposByName } from '@/services/repos';
 
+type DataType = {
+  name: string;
+  full_name: string;
+  html_url: string;
+  description: string;
+  [key: string]: any;
+}
+
 const DetailPage: React.FC = () => {
   const { name }: { name: string } = useParams();
-  const { data, loading, error } = useAsync(() => getReposByName(name));
+  const { data, loading, error } = useAsync<DataType>(() => getReposByName(name));
 
   return (
     <PageContainer>

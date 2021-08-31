@@ -8,9 +8,17 @@ import { getReposList } from '@/services/repos';
 const { Item } = List;
 const { Brief } = Item;
 
+type DataType = {
+  name: string;
+  full_name: string;
+  html_url: string;
+  description: string;
+  [key: string]: any;
+}
+
 const ListPage: React.FC = () => {
   const history = useHistory();
-  const { data, loading } = useAsync(getReposList, {
+  const { data, loading } = useAsync<DataType[]>(getReposList, {
     persisted: true,
     cacheKey: "repos_list"
   });
