@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { useAsync } from 'rc-hooks';
 import PageContainer from '@/components/PageContainer';
 import { login } from '@/services/login';
-import { getToken, setToken, removeToken } from '@/utils/storage';
+import { getToken, setToken, removeToken } from '@/utils/tokenStorage';
 import styles from './Home.module.less';
 
 const { Item } = List;
