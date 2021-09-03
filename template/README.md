@@ -14,7 +14,7 @@
 
 在开发模式下运行应用程序。
 
-默认设置 `config/env.js` 的 `default` 环境变量。
+默认设置 `config/env.js` 的 `default` 和 `dev` 环境变量。
 
 其他开发模式脚本：
 
@@ -61,7 +61,7 @@
 │   ├── pages                # 页面
 │   ├── services             # 后台接口服务
 │   ├── utils                # 工具
-│   ├── App.tsx              # 应用路由、布局、全局上下文（如果是复杂点的应用可以将路由和布局单独拆分到新文件夹 layouts 中）
+│   ├── App.tsx              # 应用路由、布局、全局上下文
 │   ├── App.less             # 应用样式
 │   ├── Index.tsx            # 项目入口文件
 │   ├── Index.less           # 全局样式

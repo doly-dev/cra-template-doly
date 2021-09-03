@@ -6,7 +6,7 @@
 
 - 基于 Create React App 脚手架扩展，工具维护升级更轻松
 - 使用 TypeScript 开发，提供类型定义文件，支持类型及属性智能提示，方便业务开发
-- 多运行环境管理，预置 `default` `dev` `test` `prod` 环境
+- 多运行环境配置，预置 `dev` `test` `prod` 环境
 - 完整的目录结构，让项目代码组织更规范
 - 配备 mock 和 proxy，使前后端分离的开发和联调更有效率
 - 支持 less & module.less
@@ -47,7 +47,7 @@ yarn create react-app my-app --template doly
 │   ├── pages                # 页面
 │   ├── services             # 后台接口服务
 │   ├── utils                # 工具
-│   ├── App.tsx              # 应用路由、布局、全局上下文（如果是复杂点的应用可以将路由和布局单独拆分到新文件夹 layouts 中）
+│   ├── App.tsx              # 应用路由、布局、全局上下文
 │   ├── App.less             # 应用样式
 │   ├── Index.tsx            # 项目入口文件
 │   ├── Index.less           # 全局样式
