@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Route, useLocation, matchPath } from 'react-router-dom';
 import type { RouteChildrenProps } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import type asyncComponent from '@/components/AsyncComponent';
 import CSSTransition from './CSSTransition';
 import { joinPaths } from './utils';
@@ -33,7 +34,7 @@ function formatRoutes(routes?: RouteItem[], parentPath: string = '') {
   return ret;
 }
 
-export const AnimatedRoute: React.FC<Omit<RouteItem, 'routes'>> = ({ path, component: C, animated = true }) => {
+export const AnimatedRoute: React.FC<Omit<RouteItem, 'routes'>> = ({ path, name, component: C, animated = true }) => {
   if (!C) {
     return null;
   }
@@ -46,6 +47,9 @@ export const AnimatedRoute: React.FC<Omit<RouteItem, 'routes'>> = ({ path, compo
 
           const routeView = (
             <div className="router">
+              <Helmet>
+                <title>{name || ''}</title>
+              </Helmet>
               <C {...routeProps} />
             </div>
           )
@@ -88,7 +92,7 @@ const WrapperNoMatch: React.FC<RoutesProps> = ({ routes, noMatch: NoMatchCompone
     return null;
   }
 
-  return <AnimatedRoute path='*' component={NoMatchComponent} animated={animated} />;
+  return <AnimatedRoute path='*' name='404' component={NoMatchComponent} animated={animated} />;
 }
 
 const Routes: React.FC<RoutesProps> = (props) => {

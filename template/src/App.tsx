@@ -1,5 +1,6 @@
 import React from 'react';
 import { HashRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 import Routes from '@/components/Routes';
 import asyncComponent from '@/components/AsyncComponent';
 import './App.less';
@@ -30,11 +31,13 @@ const routes = [
 
 function App() {
   return (
-    <HashRouter>
-      <div className='App'>
-        <Routes routes={routes} noMatch={asyncComponent(() => import('./pages/404'))} />
-      </div>
-    </HashRouter >
+    <HelmetProvider>
+      <HashRouter>
+        <div className='App'>
+          <Routes routes={routes} noMatch={asyncComponent(() => import('./pages/404'))} />
+        </div>
+      </HashRouter >
+    </HelmetProvider>
   )
 }
 
