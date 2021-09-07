@@ -4,7 +4,7 @@
 
 在实际项目中，切记一定要修改 `public` 下的文件，`favicon.ico`、`index.html`、`logo.png`、`mainfest.json` 。
 
-还有根据项目需求修改 `config/env.js`、`config/zip.js`、`config/proxy.js.js` 等配置。
+还有根据项目需求修改 `config/env.js`、`config/zip.js`、`config/proxy.js` 等配置。
 
 ## 开发
 
