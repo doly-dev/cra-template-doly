@@ -95,7 +95,7 @@ yarn create react-app my-app --template doly
 
 ```typescript
 babel: {
-  plugins: [['import', { libraryName: 'antd-mobile', style: true }]];
+  plugins: [['import', { libraryName: 'antd-mobile', style: true }, 'antd-mobile']];
 }
 ```
 
@@ -117,7 +117,7 @@ yarn add antd
 
 ```typescript
 babel: {
-  plugins: [['import', { libraryName: 'antd', style: true }]];
+  plugins: [['import', { libraryName: 'antd', style: true }, 'antd']];
 }
 ```
 
