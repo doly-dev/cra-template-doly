@@ -43,7 +43,7 @@ yarn create react-app my-app --template doly
 ├── src
 │   ├── assets               # 静态资源，如图片、样式、字体等
 │   ├── components           # 组件
-│   ├── models               # 状态管理
+│   ├── models               # 数据管理
 │   ├── pages                # 页面
 │   ├── services             # 后台接口服务
 │   ├── utils                # 工具
@@ -169,7 +169,7 @@ yarn analyze
 yarn add react-activation
 ```
 
-2. `config/config.js` 配置 `babel`
+2. `config/config.js` 配置 babel
 
 ```javascript
 babel: {
@@ -180,38 +180,46 @@ babel: {
 }
 ```
 
-3. 修改 `App.tsx`
+3. 修改 `components/Router/index.tsx`
 
 ```typescript
-import { AliveScope } from 'react-activation';
+import KeepAlive, { AliveScope } from 'react-activation';
 
 // ...
-// Router 下包裹 AliveScope 组件
-<Router>
+export type RouteItem = {
+  // ...
+  keepAlive?: boolean;
+  keepAliveParamsKey?: string;
+  keepAliveName?: string;
+}
+
+// AnimatedRoute 组件
+// props 增加 keepAlive = true, keepAliveName, keepAliveParamsKey
+// ...
+const routeView = (
+  <div className="router">
+    {
+      keepAlive ? (
+        <KeepAlive
+          name={keepAliveName || path}
+          id={keepAliveParamsKey && match?.params[keepAliveParamsKey] ? match.params[keepAliveParamsKey] : (void 0)}
+        >
+          <C {...routeProps} />
+        </KeepAlive>
+      ) : (
+        <C {...routeProps} />
+      )
+    }
+  </div>
+)
+
+// WrapperRouter
+// Router 组件下添加 AliveScope
+<Router history={routerHistory}>
   <AliveScope>
-    <div className='App'>
-      <Routes routes={routes} ... />
-    </div>
+    // ...
   </AliveScope>
 </Router>
-```
-
-4. 修改路由文件 `components/Routes`
-
-```typescript
-// ...
-// 引入模块
-import KeepAlive from 'react-activation';
-
-// ...
-// 页面包裹 KeepAlive 组件
-const routeView = (
-  <div className='router'>
-    <KeepAlive name={path}>
-      <C {...routeProps} />
-    </KeepAlive>
-  </div>
-);
 ```
 
 ### keep-alive 常见问题
@@ -222,10 +230,11 @@ const routeView = (
 
 ### 如何在工具模块中使用 `history`
 
-一些特殊场景下，需要在请求 或 工具方法中使用 `history` 处理跳转或其他操作，可参考 [router-store](https://www.npmjs.com/package/router-store)。
+`Router` 组件中有暴露 `routerHistory` ，可直接使用。
 
-- 如果使用 `react-router-dom@5`，需要安装 `history@4`。
-- 如果使用 `react-router-dom@6`，需要安装 `history@5`。
+```typescript
+import { routerHistory } from '@/components/Router';
+```
 
 ## 本地测试
 

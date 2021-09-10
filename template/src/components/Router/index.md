@@ -25,4 +25,6 @@ export type RouteItem = {
 | --------- | -------- | ----------- | ------ |
 | routes | 路由配置 | `RouteItem[]`   | - |
 | animated | 切换动画 | `boolean`   | `true` |
-| noMatch | 没有匹配到路由时显示。一般用于404页 | `ReturnType<typeof asyncComponent> \| React.ComponentType<RouteChildrenProps<any>>`   | - |
+| noMatchPath | 没有匹配到路由时重定向到该页面，一般指向404页 | `string`   | - |
+| onRouteChange | 路由初始化、路由变化时触发 | `(route?:RouteItem)=>void`   | - |
+

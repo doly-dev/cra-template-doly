@@ -1,11 +1,13 @@
 import * as React from 'react';
-import { Route, useLocation, matchPath } from 'react-router-dom';
+import { Router, Route, Redirect, useLocation, matchPath } from 'react-router-dom';
 import type { RouteChildrenProps } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import { createHashHistory } from 'history';
 import type asyncComponent from '@/components/AsyncComponent';
 import CSSTransition from './CSSTransition';
 import { joinPaths } from './utils';
 import './index.less';
+
+export const routerHistory = createHashHistory();
 
 export type RouteItem = {
   path: string;
@@ -34,7 +36,7 @@ function formatRoutes(routes?: RouteItem[], parentPath: string = '') {
   return ret;
 }
 
-export const AnimatedRoute: React.FC<Omit<RouteItem, 'routes'>> = ({ path, name, component: C, animated = true }) => {
+export const AnimatedRoute: React.FC<Omit<RouteItem, 'routes'>> = ({ path, component: C, animated = true }) => {
   if (!C) {
     return null;
   }
@@ -47,9 +49,6 @@ export const AnimatedRoute: React.FC<Omit<RouteItem, 'routes'>> = ({ path, name,
 
           const routeView = (
             <div className="router">
-              <Helmet>
-                <title>{name || ''}</title>
-              </Helmet>
               <C {...routeProps} />
             </div>
           )
@@ -67,7 +66,11 @@ export const AnimatedRoute: React.FC<Omit<RouteItem, 'routes'>> = ({ path, name,
             )
           }
 
-          return routeView;
+          if (match) {
+            return routeView;
+          }
+
+          return null;
         }
       }
     </Route>
@@ -77,36 +80,56 @@ export const AnimatedRoute: React.FC<Omit<RouteItem, 'routes'>> = ({ path, name,
 export interface RoutesProps {
   routes: RouteItem[];
   animated?: boolean;
-  noMatch?: RouteItem['component'];
+  noMatchPath?: RouteItem['path'];
+  onRouteChange?: (route?: RouteItem) => void;
 }
 
-const WrapperNoMatch: React.FC<RoutesProps> = ({ routes, noMatch: NoMatchComponent }) => {
+const WrapperNoMatch: React.FC<RoutesProps> = ({ routes, noMatchPath }) => {
   const location = useLocation();
   const hasMatch = React.useMemo(() => routes.some(routeItem => matchPath(location.pathname, {
     path: routeItem.path,
-    exact: true,
-    strict: true
+    exact: true
   })), [location.pathname, routes]);
 
-  if (!NoMatchComponent || hasMatch) {
+  if (!noMatchPath || hasMatch) {
     return null;
   }
-
-  return <AnimatedRoute path='*' name='404' component={NoMatchComponent} animated={false} />;
+  return <Redirect from='*' to={noMatchPath} />
 }
 
-const Routes: React.FC<RoutesProps> = (props) => {
-  const { routes, animated = true, noMatch } = props;
-  const formattedRoutes = formatRoutes(routes);
+const WrapperRouter: React.FC<RoutesProps> = ({
+  routes,
+  animated = true,
+  noMatchPath,
+  onRouteChange
+}) => {
+  const formattedRoutes = React.useMemo(() => formatRoutes(routes), [routes]);
+
+  React.useEffect(() => {
+    if (onRouteChange) {
+      const unlisten = routerHistory.listen((location) => {
+        const match = formattedRoutes.find(routeItem => matchPath(location.pathname, {
+          path: routeItem.path,
+          exact: true
+        }));
+        onRouteChange?.(match);
+      });
+      return () => {
+        unlisten();
+      }
+    }
+  }, [formattedRoutes, onRouteChange]);
 
   return (
-    <div className='router-wrapper'>
-      {formattedRoutes.map(route => (
-        <AnimatedRoute animated={animated} {...route} key={route.path} />
-      ))}
-      <WrapperNoMatch routes={formattedRoutes} noMatch={noMatch} />
-    </div>
+    <Router history={routerHistory}>
+      <div className='router-wrapper'>
+        {formattedRoutes.map(route => (
+          <AnimatedRoute animated={animated} {...route} key={route.path} />
+        ))}
+        <WrapperNoMatch routes={formattedRoutes} noMatchPath={noMatchPath} />
+      </div>
+    </Router >
   );
 }
 
-export default Routes;
+export default WrapperRouter;
