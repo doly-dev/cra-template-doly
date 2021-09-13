@@ -1,3 +1,9 @@
+// 数据响应结构
+type ResponseDataConstructor<D = any> = {
+  errCode: string;
+  errMsg: string;
+  data: D;
+}
 
 type RepoItem = {
   name: string;
@@ -7,11 +13,11 @@ type RepoItem = {
 }
 
 declare namespace API {
-  type Login = {
+  type Login = ResponseDataConstructor<{
     username: string;
     mobile: string;
     token: string;
-  }
+  }>
 
   type ReposList = RepoItem[];
   type ReposDetail = RepoItem;

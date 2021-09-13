@@ -11,7 +11,7 @@ const { Item } = List;
 
 const Home: React.FC = () => {
   const history = useHistory();
-  const { data, loading, run, mutate } = useAsync(login, {
+  const { data, loading, run, mutate } = useAsync<API.Login['data']>(login, {
     initialData: getToken(),
     formatResult: res => res.data,
     autoRun: false,
@@ -24,7 +24,7 @@ const Home: React.FC = () => {
   const toggleLogin = () => {
     if (data) {
       removeToken();
-      mutate(null);
+      mutate(undefined);
       Toast.info('已退出登录', 1.5);
       return;
     }
