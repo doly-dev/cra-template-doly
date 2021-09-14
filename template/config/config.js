@@ -63,6 +63,8 @@ module.exports = {
     if (env !== 'production') {
       devServerConfig.proxy = proxy[REACT_APP_ENV] || {};
     }
+    // ref: https://github.com/facebook/create-react-app/issues/9937#issuecomment-919315580
+    devServerConfig.publicPath = '/';
     return devServerConfig;
   },
   plugins: [
