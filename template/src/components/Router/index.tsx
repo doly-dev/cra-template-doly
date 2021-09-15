@@ -36,6 +36,14 @@ function formatRoutes(routes?: RouteItem[], parentPath: string = '') {
   return ret;
 }
 
+function matchPathInRoutes<S = {}>(routes: RouteItem[], pathname: string) {
+  return routes.find(routeItem => matchPath<S>(pathname, {
+    path: routeItem.path,
+    exact: true,
+    strict: false
+  }));
+}
+
 export const AnimatedRoute: React.FC<Omit<RouteItem, 'routes'>> = ({ path, component: C, animated = true }) => {
   if (!C) {
     return null;
@@ -46,7 +54,6 @@ export const AnimatedRoute: React.FC<Omit<RouteItem, 'routes'>> = ({ path, compo
       {
         (routeProps) => {
           const { match, history } = routeProps;
-
           const routeView = (
             <div className="router">
               <C {...routeProps} />
@@ -86,10 +93,7 @@ export interface RoutesProps {
 
 const WrapperNoMatch: React.FC<RoutesProps> = ({ routes, noMatchPath }) => {
   const location = useLocation();
-  const hasMatch = React.useMemo(() => routes.some(routeItem => matchPath(location.pathname, {
-    path: routeItem.path,
-    exact: true
-  })), [location.pathname, routes]);
+  const hasMatch = React.useMemo(() => matchPathInRoutes(routes, location.pathname), [location.pathname, routes]);
 
   if (!noMatchPath || hasMatch) {
     return null;
@@ -104,21 +108,29 @@ const WrapperRouter: React.FC<RoutesProps> = ({
   onRouteChange
 }) => {
   const formattedRoutes = React.useMemo(() => formatRoutes(routes), [routes]);
+  const onRouteChangeRef = React.useRef(onRouteChange);
+  onRouteChangeRef.current = onRouteChange;
 
   React.useEffect(() => {
-    if (onRouteChange) {
-      const unlisten = routerHistory.listen((location) => {
-        const match = formattedRoutes.find(routeItem => matchPath(location.pathname, {
-          path: routeItem.path,
-          exact: true
-        }));
-        onRouteChange?.(match);
-      });
-      return () => {
-        unlisten();
+    // 初次加载执行onRouteChange
+    const match = matchPathInRoutes(formattedRoutes, routerHistory.location.pathname);
+    onRouteChangeRef.current?.(match);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  React.useEffect(() => {
+    const unlisten = routerHistory.listen((location) => {
+      if (!onRouteChangeRef.current) {
+        return;
       }
+
+      const match = matchPathInRoutes(formattedRoutes, location.pathname);
+      onRouteChangeRef.current?.(match);
+    });
+    return () => {
+      unlisten();
     }
-  }, [formattedRoutes, onRouteChange]);
+  }, [formattedRoutes]);
 
   return (
     <Router history={routerHistory}>
