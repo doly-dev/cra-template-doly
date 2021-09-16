@@ -115,8 +115,7 @@ const WrapperRouter: React.FC<RoutesProps> = ({
     // 初次加载执行onRouteChange
     const match = matchPathInRoutes(formattedRoutes, routerHistory.location.pathname);
     onRouteChangeRef.current?.(match);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [formattedRoutes]);
 
   React.useEffect(() => {
     const unlisten = routerHistory.listen((location) => {
