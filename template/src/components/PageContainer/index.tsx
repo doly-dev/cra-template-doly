@@ -9,38 +9,42 @@ export {
 
 export interface PageContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   lowerThreshold?: number; // 离底部多少距离触发 onScrollToLower
-  onScrollToLower?: (event: MouseEvent | TouchEvent) => void; // 滚动至底部触发
+  onScrollToLower?: () => void; // 滚动至底部触发
 }
 
 const PageContainer = React.forwardRef<HTMLDivElement, PageContainerProps>(({
   children,
   lowerThreshold = 100,
   onScrollToLower,
-  onScroll,
   className,
   ...restProps
 }, ref) => {
   const innerRef = React.useRef<HTMLDivElement>(null);
+  const scrollTopLowerRef = React.useRef(onScrollToLower);
+  scrollTopLowerRef.current = onScrollToLower;
 
-  const handleScroll = React.useCallback(
-    (e) => {
-      onScroll?.(e);
+  React.useEffect(() => {
+    const scrollContainer = innerRef.current;
 
-      if (typeof onScrollToLower === 'function') {
-        const eTarget = e.target;
-        const sTop = eTarget.scrollTop;
-        const sHeight = eTarget.scrollHeight;
-        const cHeight = eTarget.clientHeight;
+    if (scrollContainer && typeof scrollTopLowerRef.current === 'function') {
+      const handleScroll = () => {
+        const sTop = scrollContainer.scrollTop;
+        const sHeight = scrollContainer.scrollHeight;
+        const cHeight = scrollContainer.clientHeight;
 
         const realLowerThreshold = lowerThreshold < 0 ? 0 : lowerThreshold;
 
         if (sHeight - cHeight - sTop <= realLowerThreshold) {
-          onScrollToLower(e);
+          scrollTopLowerRef.current?.();
         }
       }
-    },
-    [lowerThreshold, onScroll, onScrollToLower],
-  );
+      scrollContainer.addEventListener('scroll', handleScroll);
+
+      return () => {
+        scrollContainer?.removeEventListener('scroll', handleScroll);
+      }
+    }
+  }, [lowerThreshold]);
 
   // 转换给外部ref
   React.useImperativeHandle(ref, () => innerRef.current as HTMLDivElement, [innerRef]);
@@ -55,7 +59,6 @@ const PageContainer = React.forwardRef<HTMLDivElement, PageContainerProps>(({
         {...restProps}
         className={classnames(styles.page, className)}
         ref={innerRef}
-        onScroll={handleScroll}
       >
         {children}
       </div>
