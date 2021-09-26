@@ -78,6 +78,27 @@ yarn create react-app my-app --template doly
 
 ## 常见问题
 
+### 集成 `commitlint` 规范 git 提交描述格式？
+
+> - [#8498](https://github.com/facebook/create-react-app/issues/8498)、[#11205](https://github.com/facebook/create-react-app/issues/11205)
+> - [husky](https://typicode.github.io/husky/)
+
+如果默认集成 `husky` 会导致脚手架初始化时，git 提交失败。
+
+`commitlint` 配置都已内置，只需安装 `husky@4` 即可。
+
+```bash
+yarn add husky@4 --dev
+```
+
+或
+
+```bash
+npm install husky@4 --save-dev
+```
+
+_注意这里用的是 `husky` v4 版本，不使用更高版本是因为可能存在兼容问题。_
+
 ### 如何配置 antd 或 antd-mobile 主题？
 
 直接修改 `config/theme.js` 配置即可。

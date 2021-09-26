@@ -84,7 +84,6 @@
       "cz-conventional-changelog": "^3.3.0",
       "env-cmd": "^10.1.0",
       "glob": "^7.1.6",
-      "husky": "4",
       "lint-staged": "^10.5.4",
       "mkdirp": "^1.0.4",
       "mocker-api": "^2.8.3",
