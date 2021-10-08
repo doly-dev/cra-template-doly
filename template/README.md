@@ -210,7 +210,7 @@ yarn add react-activation
 babel: {
   plugins: [
     // ...
-    'react-activation/babel',
+    'react-activation/babel'
   ];
 }
 ```
@@ -271,7 +271,6 @@ const routeView = (
 import { routerHistory } from '@/components/Router';
 ```
 
-
 [adding custom environment variables]: https://create-react-app.dev/docs/adding-custom-environment-variables
 [supported browsers and features]: https://create-react-app.dev/docs/supported-browsers-features/#supported-language-features
 [code splitting in create react app]: https://serverless-stack.com/chapters/code-splitting-in-create-react-app.html
@@ -294,4 +293,4 @@ import { routerHistory } from '@/components/Router';
 [react-transition-group]: https://reactcommunity.org/react-transition-group/
 [react-motion]: https://github.com/chenglou/react-motion
 [react-spring]: https://github.com/react-spring/react-spring
-[Animate.css]: https://animate.style/
+[animate.css]: https://animate.style/

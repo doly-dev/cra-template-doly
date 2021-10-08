@@ -116,7 +116,9 @@ _注意这里用的是 `husky` v4 版本，不使用更高版本是因为可能�
 
 ```typescript
 babel: {
-  plugins: [['import', { libraryName: 'antd-mobile', style: true }, 'antd-mobile']];
+  plugins: [
+    ['import', { libraryName: 'antd-mobile', style: true }, 'antd-mobile'],
+  ];
 }
 ```
 
