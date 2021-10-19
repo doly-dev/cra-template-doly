@@ -4,6 +4,7 @@ const express = require('express');
 const apiMocker = require('mocker-api');
 const CracoLessPlugin = require("craco-less");
 const WebpackBar = require('webpackbar');
+const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { whenProd } = require('@craco/craco');
 const proxy = require('./proxy');
@@ -52,7 +53,15 @@ module.exports = {
       }
     },
     plugins: {
-      add: [...whenProd(() => [new WebpackBar()], [])]
+      add: [...whenProd(() => [new WebpackBar(), new TerserPlugin({
+        terserOptions: {
+          compress: {
+            // drop_console: true, // 移除console 注意会移除所有的console.*
+            drop_debugger: true, // 移除debugger
+            pure_funcs: ['console.log'] // 移除console.log函数
+          },
+        },
+      })], [])]
     }
   },
   devServer: (devServerConfig, { env }) => {
