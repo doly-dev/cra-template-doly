@@ -10,9 +10,7 @@ const proxy = require('./proxy');
 const theme = require('./theme');
 
 const cwd = process.cwd();
-const { REACT_APP_ENV, MOCK, NODE_ENV } = process.env;
-
-const isProd = NODE_ENV === 'production' || REACT_APP_ENV === 'prod';
+const { REACT_APP_ENV, MOCK } = process.env;
 
 module.exports = {
   webpack: {
@@ -115,7 +113,7 @@ module.exports = {
   babel: {
     plugins: [
       ['import', { libraryName: 'antd-mobile', style: true }, 'antd-mobile'],
-      ...(isProd ? [['transform-remove-console', { exclude: ['error', 'warn'] }]] : [])
+      ...whenProd(() => [['transform-remove-console', { exclude: ['error', 'warn'] }]], [])
     ]
   }
 }
