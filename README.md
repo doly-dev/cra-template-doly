@@ -25,7 +25,7 @@ yarn create react-app my-app --template doly
 
 ## 本地测试
 
-> [Custom Templates]
+> [Custom Templates](https://create-react-app.dev/docs/custom-templates/)
 
 ```bash
 npx create-react-app my-app --template file:../path/to/your/template/cra-template-[template-name]
