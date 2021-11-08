@@ -22,22 +22,22 @@ const routes = [
         path: 'detail/:name',
         name: '仓库详情',
         component: asyncComponent(() => import('./pages/repos/Detail'))
-      },
+      }
     ]
   },
   {
     path: '404',
     name: '页面不存在',
     component: asyncComponent(() => import('./pages/404'))
-  },
+  }
 ];
 
 function App() {
   return (
-    <div className='App'>
+    <div className="App">
       <Router
         routes={routes}
-        noMatchPath='/404'
+        noMatchPath="/404"
         onRouteChange={(route) => {
           if (route && route.name) {
             document.title = route.name;
@@ -45,7 +45,7 @@ function App() {
         }}
       />
     </div>
-  )
+  );
 }
 
 export default App;

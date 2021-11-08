@@ -11,7 +11,8 @@
       "zip": "node ./config/zip.js",
       "analyze": "source-map-explorer 'dist/static/js/*.js'",
       "commit": "cz",
-      "precommit": "lint-staged"
+      "precommit": "lint-staged",
+      "prettier": "prettier -c --write \"src/**/*\""
     },
     "cracoConfig": "config/config.js",
     "nodemonConfig": {

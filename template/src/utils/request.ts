@@ -18,9 +18,10 @@ function request<T = any>(url: AxiosRequestConfig['url'], options?: RequestOptio
   const headers = {
     ...(headersToken
       ? {
-        [HEADER_TOKEN_NAME]: getToken(),
-      } : {}),
-    ...restOptions.headers,
+        [HEADER_TOKEN_NAME]: getToken()
+      }
+      : {}),
+    ...restOptions.headers
   };
 
   return axios({
@@ -28,7 +29,7 @@ function request<T = any>(url: AxiosRequestConfig['url'], options?: RequestOptio
     baseURL: process.env.REACT_APP_API, // REACT_APP_API 通过环境变量设置
     method: 'POST',
     ...restOptions,
-    headers,
+    headers
   })
     .then((res) => {
       // 请求成功处理，一般会有其他逻辑处理。如登录过期、特殊responseCode等

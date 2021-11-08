@@ -3,67 +3,57 @@ import classnames from 'classnames';
 import PageContext from './PageContext';
 import styles from './index.module.less';
 
-export {
-  PageContext
-}
+export { PageContext };
 
 export interface PageContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   lowerThreshold?: number; // 离底部多少距离触发 onScrollToLower
   onScrollToLower?: () => void; // 滚动至底部触发
 }
 
-const PageContainer = React.forwardRef<HTMLDivElement, PageContainerProps>(({
-  children,
-  lowerThreshold = 100,
-  onScrollToLower,
-  className,
-  ...restProps
-}, ref) => {
-  const innerRef = React.useRef<HTMLDivElement>(null);
-  const scrollTopLowerRef = React.useRef(onScrollToLower);
-  scrollTopLowerRef.current = onScrollToLower;
+const PageContainer = React.forwardRef<HTMLDivElement, PageContainerProps>(
+  ({ children, lowerThreshold = 100, onScrollToLower, className, ...restProps }, ref) => {
+    const innerRef = React.useRef<HTMLDivElement>(null);
+    const scrollTopLowerRef = React.useRef(onScrollToLower);
+    scrollTopLowerRef.current = onScrollToLower;
 
-  React.useEffect(() => {
-    const scrollContainer = innerRef.current;
+    React.useEffect(() => {
+      const scrollContainer = innerRef.current;
 
-    if (scrollContainer && typeof scrollTopLowerRef.current === 'function') {
-      const handleScroll = () => {
-        const sTop = scrollContainer.scrollTop;
-        const sHeight = scrollContainer.scrollHeight;
-        const cHeight = scrollContainer.clientHeight;
+      if (scrollContainer && typeof scrollTopLowerRef.current === 'function') {
+        const handleScroll = () => {
+          const sTop = scrollContainer.scrollTop;
+          const sHeight = scrollContainer.scrollHeight;
+          const cHeight = scrollContainer.clientHeight;
 
-        const realLowerThreshold = lowerThreshold < 0 ? 0 : lowerThreshold;
+          const realLowerThreshold = lowerThreshold < 0 ? 0 : lowerThreshold;
 
-        if (sHeight - cHeight - sTop <= realLowerThreshold) {
-          scrollTopLowerRef.current?.();
-        }
+          if (sHeight - cHeight - sTop <= realLowerThreshold) {
+            scrollTopLowerRef.current?.();
+          }
+        };
+        scrollContainer.addEventListener('scroll', handleScroll);
+
+        return () => {
+          scrollContainer?.removeEventListener('scroll', handleScroll);
+        };
       }
-      scrollContainer.addEventListener('scroll', handleScroll);
+    }, [lowerThreshold]);
 
-      return () => {
-        scrollContainer?.removeEventListener('scroll', handleScroll);
-      }
-    }
-  }, [lowerThreshold]);
+    // 转换给外部ref
+    React.useImperativeHandle(ref, () => innerRef.current as HTMLDivElement, [innerRef]);
 
-  // 转换给外部ref
-  React.useImperativeHandle(ref, () => innerRef.current as HTMLDivElement, [innerRef]);
-
-  return (
-    <PageContext.Provider
-      value={{
-        container: innerRef,
-      }}
-    >
-      <div
-        {...restProps}
-        className={classnames(styles.page, className)}
-        ref={innerRef}
+    return (
+      <PageContext.Provider
+        value={{
+          container: innerRef
+        }}
       >
-        {children}
-      </div>
-    </PageContext.Provider>
-  );
-})
+        <div {...restProps} className={classnames(styles.page, className)} ref={innerRef}>
+          {children}
+        </div>
+      </PageContext.Provider>
+    );
+  }
+);
 
 export default PageContainer;

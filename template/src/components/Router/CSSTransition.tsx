@@ -24,21 +24,17 @@ const Transition: React.FC<TransitionProps> = forwardRef(
           }
         }
       },
-      [children.props.ref, ref],
+      [children.props.ref, ref]
     );
 
     return (
-      <CSSTransition
-        timeout={timeout}
-        nodeRef={nodeRef}
-        {...restProps}
-      >
+      <CSSTransition timeout={timeout} nodeRef={nodeRef} {...restProps}>
         {cloneElement(children, {
-          ref: handleRef,
+          ref: handleRef
         })}
       </CSSTransition>
     );
-  },
+  }
 );
 
 export default Transition;

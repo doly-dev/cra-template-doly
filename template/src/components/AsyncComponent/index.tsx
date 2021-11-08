@@ -15,11 +15,11 @@ export default function asyncComponent<Props = any>(importComponent: () => Promi
       super(props);
 
       this.state = {
-        hasError: false,
+        hasError: false
       };
 
       this.component = loadable(importComponent, {
-        fallback: <PageLoading />,
+        fallback: <PageLoading />
       });
     }
 

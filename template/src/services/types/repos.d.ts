@@ -3,7 +3,7 @@ type RepoItem = {
   full_name: string;
   html_url: string;
   description: string;
-}
+};
 
 declare global {
   namespace API {
@@ -12,4 +12,4 @@ declare global {
   }
 }
 
-export { }
+export { };

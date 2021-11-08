@@ -15,7 +15,7 @@ export type RouteItem = {
   component?: ReturnType<typeof asyncComponent> | React.ComponentType<RouteChildrenProps<any>>;
   routes?: RouteItem[];
   animated?: boolean;
-}
+};
 
 function formatRoutes(routes?: RouteItem[], parentPath: string = '') {
   const ret: RouteItem[] = [];
@@ -37,52 +37,56 @@ function formatRoutes(routes?: RouteItem[], parentPath: string = '') {
 }
 
 function matchPathInRoutes<S = {}>(routes: RouteItem[], pathname: string) {
-  return routes.find(routeItem => matchPath<S>(pathname, {
-    path: routeItem.path,
-    exact: true,
-    strict: false
-  }));
+  return routes.find((routeItem) =>
+    matchPath<S>(pathname, {
+      path: routeItem.path,
+      exact: true,
+      strict: false
+    })
+  );
 }
 
-export const AnimatedRoute: React.FC<Omit<RouteItem, 'routes'>> = ({ path, component: C, animated = true }) => {
+export const AnimatedRoute: React.FC<Omit<RouteItem, 'routes'>> = ({
+  path,
+  component: C,
+  animated = true
+}) => {
   if (!C) {
     return null;
   }
 
   return (
     <Route path={path} exact>
-      {
-        (routeProps) => {
-          const { match, history } = routeProps;
-          const routeView = (
-            <div className="router">
-              <C {...routeProps} />
-            </div>
-          )
+      {(routeProps) => {
+        const { match, history } = routeProps;
+        const routeView = (
+          <div className="router">
+            <C {...routeProps} />
+          </div>
+        );
 
-          if (animated) {
-            return (
-              <CSSTransition
-                in={match !== null}
-                classNames={history.action === 'POP' ? 'router-slideOut' : 'router-slideIn'}
-                timeout={300}
-                unmountOnExit
-              >
-                {routeView}
-              </CSSTransition>
-            )
-          }
-
-          if (match) {
-            return routeView;
-          }
-
-          return null;
+        if (animated) {
+          return (
+            <CSSTransition
+              in={match !== null}
+              classNames={history.action === 'POP' ? 'router-slideOut' : 'router-slideIn'}
+              timeout={300}
+              unmountOnExit
+            >
+              {routeView}
+            </CSSTransition>
+          );
         }
-      }
+
+        if (match) {
+          return routeView;
+        }
+
+        return null;
+      }}
     </Route>
-  )
-}
+  );
+};
 
 export interface RoutesProps {
   routes: RouteItem[];
@@ -93,13 +97,16 @@ export interface RoutesProps {
 
 const WrapperNoMatch: React.FC<RoutesProps> = ({ routes, noMatchPath }) => {
   const location = useLocation();
-  const hasMatch = React.useMemo(() => matchPathInRoutes(routes, location.pathname), [location.pathname, routes]);
+  const hasMatch = React.useMemo(
+    () => matchPathInRoutes(routes, location.pathname),
+    [location.pathname, routes]
+  );
 
   if (!noMatchPath || hasMatch) {
     return null;
   }
-  return <Redirect from='*' to={noMatchPath} />
-}
+  return <Redirect from="*" to={noMatchPath} />;
+};
 
 const WrapperRouter: React.FC<RoutesProps> = ({
   routes,
@@ -128,19 +135,19 @@ const WrapperRouter: React.FC<RoutesProps> = ({
     });
     return () => {
       unlisten();
-    }
+    };
   }, [formattedRoutes]);
 
   return (
     <Router history={routerHistory}>
-      <div className='router-wrapper'>
-        {formattedRoutes.map(route => (
+      <div className="router-wrapper">
+        {formattedRoutes.map((route) => (
           <AnimatedRoute animated={animated} {...route} key={route.path} />
         ))}
         <WrapperNoMatch routes={formattedRoutes} noMatchPath={noMatchPath} />
       </div>
-    </Router >
+    </Router>
   );
-}
+};
 
 export default WrapperRouter;

@@ -11,25 +11,23 @@ const DetailPage: React.FC = () => {
 
   return (
     <PageContainer>
-      {
-        loading && <div style={{ padding: 50, display: 'flex', justifyContent: 'center' }}><ActivityIndicator size="large" text="详情页数据请求中..." /></div>
-      }
-      {
-        !error && !loading && (
-          <>
-            <WhiteSpace />
-            <Card full>
-              <Card.Header
-                title={data?.full_name}
-              />
-              <Card.Body>
-                <div>{data?.description}</div>
-              </Card.Body>
-              <Card.Footer content={<a href={data?.html_url}>{data?.html_url}</a>} />
-            </Card>
-          </>
-        )
-      }
+      {loading && (
+        <div style={{ padding: 50, display: 'flex', justifyContent: 'center' }}>
+          <ActivityIndicator size="large" text="详情页数据请求中..." />
+        </div>
+      )}
+      {!error && !loading && (
+        <>
+          <WhiteSpace />
+          <Card full>
+            <Card.Header title={data?.full_name} />
+            <Card.Body>
+              <div>{data?.description}</div>
+            </Card.Body>
+            <Card.Footer content={<a href={data?.html_url}>{data?.html_url}</a>} />
+          </Card>
+        </>
+      )}
     </PageContainer>
   );
 };

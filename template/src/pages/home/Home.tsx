@@ -13,7 +13,7 @@ const Home: React.FC = () => {
   const history = useHistory();
   const { data, loading, run, mutate } = useAsync<API.Login['data']>(login, {
     initialData: getToken(),
-    formatResult: res => res.data,
+    formatResult: (res) => res.data,
     autoRun: false,
     onSuccess: (res) => {
       setToken(res.token);
@@ -29,7 +29,7 @@ const Home: React.FC = () => {
       return;
     }
     run();
-  }
+  };
 
   return (
     <PageContainer>
@@ -55,9 +55,7 @@ const Home: React.FC = () => {
       <WhiteSpace size="lg" />
       <WingBlank>
         <Button type="primary" loading={loading} onClick={toggleLogin}>
-          {
-            data ? '退出登录' : '登录'
-          }
+          {data ? '退出登录' : '登录'}
         </Button>
       </WingBlank>
     </PageContainer>

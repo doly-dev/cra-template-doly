@@ -2,7 +2,7 @@
 // 0-不添加 1-添加
 export enum WaterFlag {
   No,
-  Yes,
+  Yes
 }
 
 // 颜色
