@@ -15,7 +15,6 @@ const outputZipFile = `../zip/${pkg.name}-${pkg.version}.zip`;
 // 构建输出的路径
 const distDirectory = '../dist/';
 
-
 function isDirectory(filePath) {
   if (fs.existsSync(filePath)) {
     const stat = fs.statSync(filePath);
@@ -48,14 +47,16 @@ function zip(target, output, prefix) {
 
   archive.pipe(_output);
 
-  archive.directory(targetResolvePath, false, function (data) {
-    // Mac下，只要在Finder访问过的文件夹，都会生成一个.DS_Store的文件
-    if (data.name.indexOf('.DS_Store') > -1) {
-      return false;
-    }
-    data.prefix = prefix;
-    return data;
-  }).finalize();
+  archive
+    .directory(targetResolvePath, false, function (data) {
+      // Mac下，只要在Finder访问过的文件夹，都会生成一个.DS_Store的文件
+      if (data.name.indexOf('.DS_Store') > -1) {
+        return false;
+      }
+      data.prefix = prefix;
+      return data;
+    })
+    .finalize();
 
   console.log('zip file: ' + chalk.yellow(zipResolvePath));
   console.log();

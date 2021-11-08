@@ -2,4 +2,4 @@
 module.exports = {
   // '@brand-primary': 'red',
   // '@brand-primary-tap': '#f4333c',
-}
+};

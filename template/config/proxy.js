@@ -5,15 +5,15 @@ module.exports = {
       target: 'https://example.com',
       changeOrigin: true,
       secure: false,
-      pathRewrite: { '^': '' },
-    },
+      pathRewrite: { '^': '' }
+    }
   },
   test: {
     '/api/': {
       target: 'your test url',
       changeOrigin: true,
       secure: false,
-      pathRewrite: { '^': '' },
-    },
+      pathRewrite: { '^': '' }
+    }
   }
-}
+};

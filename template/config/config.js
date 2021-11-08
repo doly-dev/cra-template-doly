@@ -2,9 +2,9 @@ const path = require('path');
 const glob = require('glob');
 const express = require('express');
 const apiMocker = require('mocker-api');
-const CracoLessPlugin = require("craco-less");
+const CracoLessPlugin = require('craco-less');
 const WebpackBar = require('webpackbar');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { whenProd } = require('@craco/craco');
 const proxy = require('./proxy');
 const theme = require('./theme');
@@ -20,7 +20,7 @@ module.exports = {
     configure: (webpackConfig) => {
       // ref: https://github.com/facebook/create-react-app/issues/5372#issuecomment-727103057
       const instanceOfMiniCssExtractPlugin = webpackConfig.plugins.find(
-        (plugin) => plugin instanceof MiniCssExtractPlugin,
+        (plugin) => plugin instanceof MiniCssExtractPlugin
       );
       if (instanceOfMiniCssExtractPlugin) {
         instanceOfMiniCssExtractPlugin.options.ignoreOrder = true;
@@ -31,7 +31,8 @@ module.exports = {
         optimization: {
           ...webpackConfig.optimization,
           // ref: https://github.com/facebook/create-react-app/issues/5372#issuecomment-678892998
-          splitChunks: { // 将多入口的公共部分单独打包
+          splitChunks: {
+            // 将多入口的公共部分单独打包
             minChunks: 2,
             cacheGroups: {
               vendor: {
@@ -42,14 +43,14 @@ module.exports = {
               default: false
             }
           },
-          minimizer: webpackConfig.optimization.minimizer.map(item => {
+          minimizer: webpackConfig.optimization.minimizer.map((item) => {
             if (item && item.options && item.options.extractComments) {
               item.options.extractComments = false;
             }
             return item;
           })
-        },
-      }
+        }
+      };
     },
     plugins: {
       add: [...whenProd(() => [new WebpackBar()], [])]
@@ -62,8 +63,8 @@ module.exports = {
         app.use(express.json({ limit: '50mb' }));
         app.use(express.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
 
-        apiMocker(app, glob.sync(path.resolve(cwd, 'mock/*.js')))
-      }
+        apiMocker(app, glob.sync(path.resolve(cwd, 'mock/*.js')));
+      };
     }
     if (env !== 'production') {
       devServerConfig.proxy = proxy[REACT_APP_ENV] || {};
@@ -79,13 +80,13 @@ module.exports = {
         lessLoaderOptions: {
           lessOptions: {
             modifyVars: theme || {},
-            javascriptEnabled: true,
-          },
+            javascriptEnabled: true
+          }
         },
         miniCssExtractPluginOptions: {
           ignoreOrder: true
-        },
-      },
+        }
+      }
     },
     {
       plugin: CracoLessPlugin,
@@ -93,8 +94,8 @@ module.exports = {
         lessLoaderOptions: {
           lessOptions: {
             modifyVars: theme || {},
-            javascriptEnabled: true,
-          },
+            javascriptEnabled: true
+          }
         },
         miniCssExtractPluginOptions: {
           ignoreOrder: true
@@ -105,8 +106,8 @@ module.exports = {
           return lessRule;
         },
         cssLoaderOptions: {
-          modules: { localIdentName: '[local]_[hash:base64:5]' },
-        },
+          modules: { localIdentName: '[local]_[hash:base64:5]' }
+        }
       }
     }
   ],
@@ -116,4 +117,4 @@ module.exports = {
       ...whenProd(() => [['transform-remove-console', { exclude: ['error', 'warn'] }]], [])
     ]
   }
-}
+};

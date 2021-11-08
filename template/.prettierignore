@@ -8,6 +8,10 @@ package.json
 LICENSE
 .eslintcache
 *.lock
+*.png
+*.jpg
+*.gif
+*.bmp
 yarn-error.log
 .history
 CNAME
