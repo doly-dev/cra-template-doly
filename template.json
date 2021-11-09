@@ -12,7 +12,11 @@
       "analyze": "source-map-explorer 'dist/static/js/*.js'",
       "commit": "cz",
       "precommit": "lint-staged",
-      "prettier": "prettier --write \"src/**/*\" && prettier --write \"config/*.js\" && prettier --write \"mock/**/*.js\""
+      "prettier": "prettier --write \"src/**/*\" && prettier --write \"config/*.js\" && prettier --write \"mock/**/*.js\"",
+      "lint": "npm run lint:js && npm run lint:style",
+      "lint:fix": "eslint src --ext .ts,.tsx,.js,.jsx --fix",
+      "lint:js": "eslint src --ext .ts,.tsx,.js,.jsx",
+      "lint:style": "stylelint --fix \"src/**/*.less\" --syntax less"
     },
     "cracoConfig": "config/config.js",
     "nodemonConfig": {
