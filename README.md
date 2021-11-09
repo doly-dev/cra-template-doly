@@ -1,5 +1,7 @@
 # cra-template-doly
 
+[![npm][npm]][npm-url] ![GitHub](https://img.shields.io/github/license/doly-dev/cra-template-doly.svg)
+
 基于 [Create React App](https://create-react-app.dev/) + [craco](https://github.com/gsoft-inc/craco) 扩展的脚手架，快速构建 React 单页应用。
 
 了解更多信息，[请点击查阅文档](https://doly-dev.github.io/cra-template-doly-site/latest/)。
@@ -34,3 +36,6 @@ npx create-react-app my-app --template file:../path/to/your/template/cra-templat
 ## License
 
 MIT License
+
+[npm]: https://img.shields.io/npm/v/cra-template-doly.svg
+[npm-url]: https://npmjs.com/package/cra-template-doly
