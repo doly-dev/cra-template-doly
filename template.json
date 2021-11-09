@@ -12,7 +12,7 @@
       "analyze": "source-map-explorer 'dist/static/js/*.js'",
       "commit": "cz",
       "precommit": "lint-staged",
-      "prettier": "prettier -c --write \"src/**/*\""
+      "prettier": "prettier --write \"src/**/*\" && prettier --write \"config/*.js\" && prettier --write \"mock/**/*.js\""
     },
     "cracoConfig": "config/config.js",
     "nodemonConfig": {
