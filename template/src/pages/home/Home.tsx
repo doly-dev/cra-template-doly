@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { Button, List, WhiteSpace, WingBlank, Toast } from 'antd-mobile';
+import { useState } from 'react';
+import { Button, List, WhiteSpace, Toast } from 'antd-mobile';
 import { useHistory } from 'react-router-dom';
 import { useAsync } from 'rc-hooks';
 import PageContainer from '@/components/PageContainer';
@@ -9,55 +9,63 @@ import styles from './Home.module.less';
 
 const { Item } = List;
 
-const Home: React.FC = () => {
+const pages = [
+  {
+    name: '列表页',
+    link: '/repos/list'
+  },
+  {
+    name: '不存在的页面',
+    link: '/abc'
+  }
+];
+
+const toast = (text: string) => {
+  Toast.info(text, 1.5, () => { }, false);
+};
+
+const Home = () => {
   const history = useHistory();
-  const { data, loading, run, mutate } = useAsync<API.Login['data']>(login, {
-    initialData: getToken(),
-    formatResult: (res) => res.data,
+  const [logined, setLogined] = useState(() => !!getToken());
+  const { loading, run } = useAsync(login, {
     autoRun: false,
     onSuccess: (res) => {
-      setToken(res.token);
-      Toast.info('登录成功', 1.5);
+      setToken(res.data.token);
+      setLogined(true);
+      toast('登录成功');
     }
   });
 
   const toggleLogin = () => {
-    if (data) {
+    if (logined) {
       removeToken();
-      mutate(undefined);
-      Toast.info('已退出登录', 1.5);
-      return;
+      setLogined(false);
+      toast('已退出登录');
+    } else {
+      run();
     }
-    run();
   };
 
   return (
     <PageContainer>
       <div className={styles.title}>cra-template-doly</div>
       <List renderHeader={() => '示例页面'}>
-        <Item
-          arrow="horizontal"
-          onClick={() => {
-            history.push('/repos/list');
-          }}
-        >
-          列表页
-        </Item>
-        <Item
-          arrow="horizontal"
-          onClick={() => {
-            history.push('/abc');
-          }}
-        >
-          不存在的页面
-        </Item>
+        {pages.map((item) => (
+          <Item
+            key={item.name}
+            arrow="horizontal"
+            onClick={() => {
+              history.push(item.link);
+            }}
+          >
+            {item.name}
+          </Item>
+        ))}
       </List>
       <WhiteSpace size="lg" />
-      <WingBlank>
-        <Button type="primary" loading={loading} onClick={toggleLogin}>
-          {data ? '退出登录' : '登录'}
-        </Button>
-      </WingBlank>
+      <Button type={logined ? undefined : 'primary'} loading={loading} onClick={toggleLogin}>
+        {logined ? '退出登录' : loading ? '登录中' : '点击登录'}
+      </Button>
     </PageContainer>
   );
 };

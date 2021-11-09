@@ -36,7 +36,7 @@ _组件_
 import * as React from 'react';
 import { PageContext } from '@/components/PageContainer';
 
-const SomeComponent: React.FC = () => {
+const SomeComponent = () => {
   const { container } = React.useContext(PageContext);
 
   const handleClick = React.useCallback(() => {
@@ -52,11 +52,10 @@ const SomeComponent: React.FC = () => {
 _页面_
 
 ```typescript
-import * as React from 'react';
 import PageContainer from '@/components/PageContainer';
 import SomeComponent from '@/components/SomeComponent';
 
-const SomePage: React.FC = () => {
+const SomePage = () => {
   return (
     <PageContainer>
       <br />

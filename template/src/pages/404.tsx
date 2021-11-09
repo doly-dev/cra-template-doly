@@ -1,8 +1,7 @@
-import * as React from 'react';
 import { Result, Icon } from 'antd-mobile';
 import PageContainer from '@/components/PageContainer';
 
-const NoFoundPage: React.FC = () => {
+const NotFoundPage = () => {
   return (
     <PageContainer>
       <Result
@@ -14,4 +13,4 @@ const NoFoundPage: React.FC = () => {
   );
 };
 
-export default NoFoundPage;
+export default NotFoundPage;
