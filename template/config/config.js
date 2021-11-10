@@ -40,6 +40,13 @@ module.exports = {
                 test: /[\\/]node_modules[\\/]/,
                 reuseExistingChunk: true
               },
+              // 拆分公共样式，多个页面引入相同组件会产生相同的样式
+              commonStyle: {
+                name: 'common',
+                test: /\.(c|sc|le)ss$/,
+                minSize: 100,
+                chunks: 'all'
+              },
               default: false
             }
           },
