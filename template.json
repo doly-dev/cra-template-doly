@@ -38,7 +38,7 @@
     "lint-staged": {
       "**/*.less": "stylelint --syntax less",
       "**/*.css": "stylelint --syntax css",
-      "**/*.{js,jsx,ts,tsx}": "eslint --ext .js,.jsx,.ts,.tsx",
+      "**/*.{js,jsx,ts,tsx}": "eslint",
       "**/*.{js,jsx,ts,tsx,json,css,scss,sass,less,md}": "prettier --write"
     },
     "husky": {
