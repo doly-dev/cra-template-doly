@@ -1,17 +1,18 @@
+.DS_Store
 
 CNAME
-.DS_Store
-.gitignore
-.prettierignore
-.eslintignore
-.eslintcache
-
 LICENSE
 package.json
+package-lock.json
 
 *.lock
 yarn-error.log
 *debug.log
+
+.gitignore
+.prettierignore
+.eslintignore
+.eslintcache
 .history
 
 *.svg
