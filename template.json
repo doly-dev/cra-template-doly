@@ -38,8 +38,7 @@
       ]
     },
     "lint-staged": {
-      "**/*.less": "stylelint --fix",
-      "**/*.css": "stylelint --fix",
+      "**/*.{less,css}": "stylelint --fix",
       "**/*.{js,jsx,ts,tsx}": "eslint",
       "**/*.{js,jsx,ts,tsx,json,css,scss,sass,less,md}": "prettier --write"
     },
