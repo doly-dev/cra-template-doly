@@ -7,6 +7,8 @@
     "create-react-app",
     "react",
     "template",
+    "cra-template",
+    "typescript",
     "doly"
   ],
   "author": "caijf <369756941@qq.com>",
@@ -14,6 +16,7 @@
   "bugs": {
     "url": "https://github.com/doly-dev/cra-template-doly/issues"
   },
+  "homepage": "https://doly-dev.github.io/cra-template-doly-site/latest/index.html",
   "files": [
     "template",
     "template.json"

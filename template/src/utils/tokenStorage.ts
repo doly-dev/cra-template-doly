@@ -1,6 +1,6 @@
 import { session } from './storage';
 
-const TOKEN_KEY = 'loginTokenName'; // 登录token
+const TOKEN_KEY = 'loginToken'; // 登录token
 
 export const getToken = () => session.get(TOKEN_KEY) as string | undefined;
 export const setToken = (token: string) => {

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import classnames from 'classnames';
+import { getScrollTop, getScrollHeight, getClientHeight } from '@/utils/dom';
 import PageContext from './PageContext';
 import styles from './index.module.less';
 
@@ -21,10 +22,9 @@ const PageContainer = React.forwardRef<HTMLDivElement, PageContainerProps>(
 
       if (scrollContainer && typeof scrollTopLowerRef.current === 'function') {
         const handleScroll = () => {
-          const sTop = scrollContainer.scrollTop;
-          const sHeight = scrollContainer.scrollHeight;
-          const cHeight = scrollContainer.clientHeight;
-
+          const sTop = getScrollTop(scrollContainer);
+          const sHeight = getScrollHeight(scrollContainer);
+          const cHeight = getClientHeight(scrollContainer);
           const realLowerThreshold = lowerThreshold < 0 ? 0 : lowerThreshold;
 
           if (sHeight - cHeight - sTop <= realLowerThreshold) {

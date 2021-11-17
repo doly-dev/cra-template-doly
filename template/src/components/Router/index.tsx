@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { Router, Route, Redirect, useLocation, matchPath } from 'react-router-dom';
 import type { RouteChildrenProps } from 'react-router-dom';
-import { createHashHistory } from 'history';
+import routerHistory from '@/utils/history';
 import type asyncComponent from '@/components/AsyncComponent';
 import CSSTransition from './CSSTransition';
 import { joinPaths } from './utils';
 import './index.less';
-
-export const routerHistory = createHashHistory();
 
 export type RouteItem = {
   path: string;

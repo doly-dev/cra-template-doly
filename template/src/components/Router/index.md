@@ -1,6 +1,6 @@
 # Router - 路由
 
-路由在 `src/App.tsx` 中配置。
+路由在 `src/routes.ts` 中配置。
 
 **特性**
 
@@ -29,10 +29,10 @@ type RouteItem = {
 
 ### 非组件模块中使用 history
 
-`Router` 模块有暴露 `routerHistory` ，可直接使用：
+直接使用 `src/utils/history.ts`：
 
 ```typescript
-import { routerHistory } from '@/components/Router';
+import routerHistory from '@/utils/history';
 
 // util function
 function xxx() {
