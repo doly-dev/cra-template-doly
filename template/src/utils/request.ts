@@ -26,7 +26,7 @@ function request<T = any>(url: AxiosRequestConfig['url'], options?: RequestOptio
 
   return axios({
     url,
-    baseURL: process.env.REACT_APP_API, // REACT_APP_API 通过环境变量设置
+    baseURL: process.env.REACT_APP_API, // 环境变量在 config/env.ts 设置
     method: 'POST',
     ...restOptions,
     headers

@@ -11,13 +11,13 @@
 
 ```typescript
 import ReactDom from 'react-dom';
-import asyncComponent from '@/components/AsyncComponent';
+import asyncComponent from '@/components/asyncComponent';
 
 const HomePage = asyncComponent(() => import('./pages/home'));
 
 function App() {
   return (
-    <div className="app">
+    <div className="App">
       <HomePage />
     </div>
   );

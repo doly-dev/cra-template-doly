@@ -1,0 +1,60 @@
+.pageLoader {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding: 16px;
+  overflow: scroll;
+  text-align: center;
+  background-color: var(--cra-color-page-bg);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .loadErrorText {
+    font-size: 14px;
+    a {
+      display: inline-block;
+      cursor: pointer;
+      padding: 8px;
+      color: #108ee9;
+    }
+  }
+
+  .loadingText {
+    font-size: 14px;
+    margin: 8px;
+    color: gray;
+  }
+}
+
+@keyframes animation-zoom {
+  50% {
+    transform: scale(0.75);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.beatLoader {
+  > span {
+    display: inline-block;
+    background-color: var(--cra-color-spinner);
+    width: 10px;
+    height: 10px;
+    margin: 2px;
+    border-radius: 100%;
+    animation: animation-zoom 0.7s 0s infinite linear;
+    animation-fill-mode: both;
+
+    &:nth-child(2n) {
+      animation-delay: 0.35s;
+    }
+  }
+}

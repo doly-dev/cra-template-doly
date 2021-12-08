@@ -1,4 +1,4 @@
-import asyncComponent from '@/components/AsyncComponent';
+import asyncComponent from '@/components/asyncComponent';
 
 const routes = [
   {

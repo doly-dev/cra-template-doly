@@ -1,8 +1,8 @@
-import type { ResponseDataConstructor } from './common';
+import type { ResponseConstructor } from './common';
 
 declare global {
   namespace API {
-    type Login = ResponseDataConstructor<{
+    type Login = ResponseConstructor<{
       username: string;
       mobile: string;
       token: string;

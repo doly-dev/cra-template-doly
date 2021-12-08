@@ -1,7 +1,9 @@
+// ref: https://serverless-stack.com/chapters/code-splitting-in-create-react-app.html
+
 import React from 'react';
 import loadable from '@loadable/component';
 import type { LoadableComponent } from '@loadable/component';
-import PageLoading from '@/components/PageLoading';
+import { PageLoading, PageLoadError } from '../PageLoader';
 
 type AsyncComponentState = {
   hasError: boolean;
@@ -32,7 +34,7 @@ export default function asyncComponent<Props = any>(importComponent: () => Promi
       const { hasError } = this.state;
 
       if (hasError) {
-        return <PageLoading error />;
+        return <PageLoadError />;
       }
 
       const C = this.component;
