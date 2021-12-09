@@ -25,6 +25,15 @@ npx create-react-app my-app --template doly
 yarn create react-app my-app --template doly
 ```
 
+```bash
+cd my-app
+
+yarn add yorkie --dev # 启用 git hook 生效，用于 commitlint
+
+git add .
+git commit -m "chore: add yorkie"
+```
+
 ## 本地测试
 
 > [Custom Templates](https://create-react-app.dev/docs/custom-templates/)
