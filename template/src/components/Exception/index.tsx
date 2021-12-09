@@ -2,15 +2,15 @@ import React from 'react';
 import classnames from 'classnames';
 import styles from './index.module.less';
 
-interface ResultProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
+interface ExceptionProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   icon?: React.ReactNode;
-  title: React.ReactNode;
+  title?: React.ReactNode;
   desc?: React.ReactNode;
   extra?: React.ReactNode;
   actions?: React.ReactNode[];
 }
 
-const Result: React.FC<ResultProps> = ({
+const Exception: React.FC<ExceptionProps> = ({
   icon,
   title,
   desc,
@@ -20,7 +20,7 @@ const Result: React.FC<ResultProps> = ({
   ...props
 }) => {
   return (
-    <div className={classnames(styles.result, className)} {...props}>
+    <div className={classnames(styles.exception, className)} {...props}>
       {icon && <div className={styles.icon}>{icon}</div>}
       {title && <div className={styles.title}>{title}</div>}
       {desc && <div className={styles.desc}>{desc}</div>}
@@ -38,4 +38,4 @@ const Result: React.FC<ResultProps> = ({
   );
 };
 
-export default Result;
+export default Exception;
