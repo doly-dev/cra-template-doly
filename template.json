@@ -43,7 +43,7 @@
       "**/*.{js,jsx,ts,tsx,json,css,scss,sass,less,md}": "prettier --write"
     },
     "gitHooks": {
-      "commit-msg": "commitlint --edit \"$1\""
+      "commit-msg": "node commitlint-override"
     },
     "config": {
       "commitizen": {
@@ -102,7 +102,8 @@
       "stylelint-no-unsupported-browser-features": "^5.0.2",
       "typescript": "^4.1.2",
       "web-vitals": "^1.0.1",
-      "webpackbar": "^5.0.0-3"
+      "webpackbar": "^5.0.0-3",
+      "yorkie": "^2.0.0"
     }
   }
 }
