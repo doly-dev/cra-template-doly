@@ -33,6 +33,7 @@ module.exports = {
           splitChunks: {
             minChunks: 2,
             // 将公共部分单独打包
+            // 目前都使用 Tree-sharking 没有必要单独处理 node_modules（工具已单独处理 react 等部分单独提取）
             cacheGroups: {
               common: {
                 name: 'common',
