@@ -22,5 +22,6 @@ module.exports = {
     'selector-id-pattern': null,
     'font-family-no-missing-generic-family-keyword': null,
     'selector-no-vendor-prefix': [true, { ignoreSelectors: ['::-webkit-input-placeholder', '/-moz-.*/'] }]
-  }
+  },
+  ignoreFiles: ['**/*.js', '**/*.jsx', '**/*.tsx', '**/*.ts']
 };
