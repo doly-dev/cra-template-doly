@@ -9,7 +9,7 @@
       "test": "craco test",
       "zip": "node ./config/zip.js",
       "build:analyze": "env-cmd -r ./config/env.js -e default,prod cross-env GENERATE_SOURCEMAP=true BUILD_PATH=dist-analyze craco build",
-      "analyze": "npm run build:analyze && source-map-explorer 'dist/static/js/*.js'",
+      "analyze": "npm run build:analyze && source-map-explorer 'dist-analyze/static/js/*.js'",
       "commit": "cz",
       "precommit": "lint-staged",
       "prettier": "prettier --write \"{src,config,mock}/**/*\"",
