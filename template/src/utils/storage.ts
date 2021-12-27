@@ -1,7 +1,6 @@
 import store from 'store2';
 
-type StoreNameSpaceType = store.StoreAPI & { session: store.StoreAPI; local: store.StoreAPI };
+// 本地存储命名空间，建议改为项目名
+const STORE_NAMESPACE = 'cra-template-doly';
 
-const STORE_NAMESPACE = 'cra-template-doly'; // 改为项目名
-
-export const { session, local } = store.namespace(STORE_NAMESPACE) as StoreNameSpaceType;
+export const { session, local } = store.namespace(STORE_NAMESPACE);
