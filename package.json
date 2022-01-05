@@ -22,7 +22,7 @@
     "template.json"
   ],
   "engines": {
-    "node": ">=10"
+    "node": ">=14"
   },
   "scripts": {
     "commit": "cz"
