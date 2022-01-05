@@ -1,6 +1,7 @@
 import asyncComponent from '@/components/asyncComponent';
+import type { RouteItem } from '@/components/Router';
 
-const routes = [
+const routes: RouteItem[] = [
   {
     path: '/',
     name: '首页',

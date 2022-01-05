@@ -17,7 +17,7 @@ const DetailPage = () => {
         )}
         {!loading && data && (
           <div>
-            <h1>{data.full_name}</h1>
+            <h2>{data.full_name}</h2>
             <p>{data.description}</p>
             <p>链接：<a href={data?.html_url} target='_blank' rel="noreferrer">{data.html_url}</a></p>
           </div>
