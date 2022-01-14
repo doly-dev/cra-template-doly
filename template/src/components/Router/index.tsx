@@ -10,6 +10,7 @@ import './index.less';
 
 export type RouteItem = {
   path: string;
+  redirect?: string;
   name?: string;
   component?: ReturnType<typeof asyncComponent> | React.ComponentType<RouteChildrenProps<any>>;
   routes?: RouteItem[];
@@ -26,7 +27,7 @@ function formatRoutes(routes?: RouteItem[], parentPath: string = '') {
 
       if (routes && routes.length > 0) {
         ret.push(...formatRoutes(routes, resolvePath));
-      } else if (component) {
+      } else {
         ret.push({ ...rest, path: resolvePath, component });
       }
     });
@@ -47,9 +48,14 @@ function matchPathInRoutes<S = {}>(routes: RouteItem[], pathname: string) {
 
 export const AnimatedRoute: React.FC<Omit<RouteItem, 'routes'>> = ({
   path,
+  redirect,
   component: C,
   animated = true
 }) => {
+  if (redirect) {
+    return <Redirect from={path} to={redirect} />
+  }
+
   if (!C) {
     return null;
   }

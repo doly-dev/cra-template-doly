@@ -13,6 +13,7 @@
 ```typescript
 type RouteItem = {
   path: string;
+  redirect?: string;
   name?: string;
   component?: ReturnType<typeof asyncComponent> | React.ComponentType<RouteChildrenProps<any>>;
   routes?: RouteItem[];
