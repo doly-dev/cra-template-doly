@@ -7,17 +7,15 @@ import routes from './routes';
 
 function App() {
   return (
-    <div className="App">
-      <Router
-        routes={routes}
-        noMatchPath="/404"
-        onRouteChange={(route) => {
-          if (route && route.name) {
-            document.title = route.name;
-          }
-        }}
-      />
-    </div>
+    <Router
+      routes={routes}
+      noMatchPath="/404"
+      onRouteChange={(route) => {
+        if (route && route.name) {
+          document.title = route.name;
+        }
+      }}
+    />
   );
 }
 
