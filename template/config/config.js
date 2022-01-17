@@ -11,6 +11,11 @@ const proxy = require('./proxy');
 const cwd = process.cwd();
 const { REACT_APP_ENV, MOCK } = process.env;
 
+// compatibility mini-css-extract-plugin v2.5.0
+// ref: https://github.com/webpack-contrib/mini-css-extract-plugin/releases/tag/v2.5.0
+const MiniCssExtractPluginClass =
+  typeof MiniCssExtractPlugin === 'function' ? MiniCssExtractPlugin : MiniCssExtractPlugin.default;
+
 module.exports = {
   webpack: {
     alias: {
@@ -19,7 +24,7 @@ module.exports = {
     configure: (webpackConfig) => {
       // ref: https://github.com/facebook/create-react-app/issues/5372#issuecomment-727103057
       const instanceOfMiniCssExtractPlugin = webpackConfig.plugins.find(
-        (plugin) => plugin instanceof MiniCssExtractPlugin
+        (plugin) => plugin instanceof MiniCssExtractPluginClass
       );
       if (instanceOfMiniCssExtractPlugin) {
         instanceOfMiniCssExtractPlugin.options.ignoreOrder = true;
