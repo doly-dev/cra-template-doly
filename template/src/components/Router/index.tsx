@@ -22,13 +22,13 @@ function formatRoutes(routes?: RouteItem[], parentPath: string = '') {
 
   if (Array.isArray(routes) && routes.length > 0) {
     routes.forEach((route) => {
-      const { routes, path, component, ...rest } = route;
+      const { routes, path, ...rest } = route;
       const resolvePath = joinPaths([parentPath, path]);
 
       if (routes && routes.length > 0) {
         ret.push(...formatRoutes(routes, resolvePath));
-      } else {
-        ret.push({ ...rest, path: resolvePath, component });
+      } else if (rest?.component || rest?.redirect) {
+        ret.push({ ...rest, path: resolvePath });
       }
     });
   }
@@ -53,7 +53,11 @@ export const AnimatedRoute: React.FC<Omit<RouteItem, 'routes'>> = ({
   animated = true
 }) => {
   if (redirect) {
-    return <Redirect from={path} to={redirect} />
+    return (
+      <Route exact path={path}>
+        <Redirect from='*' to={redirect} />
+      </Route>
+    );
   }
 
   if (!C) {
