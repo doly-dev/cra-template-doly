@@ -1,7 +1,7 @@
 {
   "package": {
     "scripts": {
-      "start": "nodemon --exec \"env-cmd -r ./config/env.js -e default craco start\"",
+      "start": "nodemon --exec \"env-cmd -r ./config/env.js -e default,dev craco start\"",
       "start:no-mock": "cross-env MOCK=none nodemon --exec \"env-cmd -r ./config/env.js -e default,dev craco start\"",
       "start:dev": "cross-env MOCK=none nodemon --exec \"env-cmd -r ./config/env.js -e default,dev craco start\"",
       "start:test": "cross-env MOCK=none nodemon --exec \"env-cmd -r ./config/env.js -e default,test craco start\"",
