@@ -2,9 +2,9 @@
   "package": {
     "scripts": {
       "start": "nodemon --exec \"env-cmd -r ./config/env.js -e default,dev craco start\"",
-      "start:no-mock": "cross-env MOCK=none nodemon --exec \"env-cmd -r ./config/env.js -e default,dev craco start\"",
-      "start:dev": "cross-env MOCK=none nodemon --exec \"env-cmd -r ./config/env.js -e default,dev craco start\"",
-      "start:test": "cross-env MOCK=none nodemon --exec \"env-cmd -r ./config/env.js -e default,test craco start\"",
+      "start:no-mock": "cross-env REACT_APP_MOCK=none nodemon --exec \"env-cmd -r ./config/env.js -e default,dev craco start\"",
+      "start:dev": "cross-env REACT_APP_MOCK=none nodemon --exec \"env-cmd -r ./config/env.js -e default,dev craco start\"",
+      "start:test": "cross-env REACT_APP_MOCK=none nodemon --exec \"env-cmd -r ./config/env.js -e default,test craco start\"",
       "build": "env-cmd -r ./config/env.js -e default,prod craco build",
       "test": "craco test",
       "zip": "node ./config/zip.js",

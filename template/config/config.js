@@ -9,7 +9,7 @@ const { whenProd, whenDev } = require('@craco/craco');
 const proxy = require('./proxy');
 
 const cwd = process.cwd();
-const { REACT_APP_ENV, MOCK } = process.env;
+const { REACT_APP_ENV, REACT_APP_MOCK } = process.env;
 
 // compatibility mini-css-extract-plugin v2.5.0
 // ref: https://github.com/webpack-contrib/mini-css-extract-plugin/releases/tag/v2.5.0
@@ -67,7 +67,7 @@ module.exports = {
     }
   },
   devServer: (devServerConfig, { env }) => {
-    if (MOCK !== 'none' && env !== 'production') {
+    if (REACT_APP_MOCK !== 'none' && env !== 'production') {
       devServerConfig.setupMiddlewares = (middlewares, devServer) => {
         // ref: https://stackoverflow.com/questions/50304779/payloadtoolargeerror-request-entity-too-large
         devServer.app.use(express.json({ limit: '50mb' }));
