@@ -32,9 +32,6 @@ module.exports = {
 
       return {
         ...webpackConfig,
-        // 开发环境下不显示 stats 打印信息
-        // ref: https://github.com/webpack/webpack-dev-middleware/blob/master/src/utils/setupHooks.js#L179
-        ...whenDev(() => ({ stats: 'none' }), {}),
         optimization: {
           ...webpackConfig.optimization,
           // ref: https://github.com/facebook/create-react-app/issues/5372#issuecomment-678892998

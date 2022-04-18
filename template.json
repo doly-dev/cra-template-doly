@@ -92,7 +92,7 @@
       "nodemon": "^2.0.15",
       "prettier": "^2.5.1",
       "prettier-plugin-two-style-order": "^1.0.1",
-      "react-scripts": "^5.0.0",
+      "react-scripts": "^5.0.1",
       "source-map-explorer": "^2.5.2",
       "stylelint": "^14.2.0",
       "stylelint-config-css-modules": "^2.3.0",
@@ -107,7 +107,8 @@
       "yorkie": "^2.0.0"
     },
     "resolutions": {
-      "mini-css-extract-plugin": "2.4.5"
+      "mini-css-extract-plugin": "2.4.5",
+      "@types/react": "17"
     }
   }
 }

@@ -6,6 +6,18 @@
 
 了解更多信息，[请点击查阅文档](https://doly-dev.github.io/cra-template-doly-site/latest/)。
 
+## 使用
+
+```bash
+npx create-react-app my-app --template doly
+```
+
+或
+
+```bash
+yarn create react-app my-app --template doly
+```
+
 ## 特性
 
 - 使用 TypeScript 开发，提供类型定义文件
@@ -14,16 +26,6 @@
 - 配备 `mock` 和 `proxy` ，使前后端分离的开发和联调更有效率
 - 支持 `*.less` `*.module.less`
 - 内置路由组件支持页面切换动画
-
-## 使用
-
-```bash
-npx create-react-app my-app --template doly
-
-# or
-
-yarn create react-app my-app --template doly
-```
 
 ## 本地测试
 
