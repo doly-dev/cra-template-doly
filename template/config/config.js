@@ -5,7 +5,7 @@ const apiMocker = require('mocker-api');
 const CracoLessPlugin = require('craco-less');
 const WebpackBar = require('webpackbar');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { whenProd, whenDev } = require('@craco/craco');
+const { whenProd } = require('@craco/craco');
 const proxy = require('./proxy');
 
 const cwd = process.cwd();
