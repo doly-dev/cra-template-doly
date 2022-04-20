@@ -52,7 +52,7 @@
     },
     "dependencies": {
       "@loadable/component": "^5.15.2",
-      "axios": "^0.24.0",
+      "axios": "^0",
       "classnames": "^2.3.1",
       "history": "4",
       "rc-hooks": "^2.0.2",
@@ -97,7 +97,7 @@
       "stylelint": "^14.2.0",
       "stylelint-config-css-modules": "^2.3.0",
       "stylelint-config-prettier": "^9.0.3",
-      "stylelint-config-rational-order": "^0.1.2",
+      "stylelint-config-rational-order": "^0",
       "stylelint-config-standard": "^24.0.0",
       "stylelint-declaration-block-no-ignored-properties": "^2.5.0",
       "stylelint-no-unsupported-browser-features": "^5.0.2",
