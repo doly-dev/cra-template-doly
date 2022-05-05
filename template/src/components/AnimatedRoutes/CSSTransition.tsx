@@ -10,9 +10,9 @@ export type TransitionProps<RefElement extends undefined | HTMLElement = HTMLEle
 
 const Transition: React.FC<TransitionProps> = forwardRef(
   ({ timeout = 300, children, ...restProps }, ref) => {
-    const nodeRef = useRef(null);
+    const nodeRef = useRef<HTMLElement | null>(null);
     const handleRef = useCallback(
-      (refValue) => {
+      (refValue: HTMLElement | null) => {
         nodeRef.current = refValue;
         const childRef = children.props.ref || ref;
 

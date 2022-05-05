@@ -25,7 +25,7 @@ yarn create react-app my-app --template doly
 - 多运行环境配置，预置 `dev` `test` `prod` 环境
 - 配备 `mock` 和 `proxy` ，使前后端分离的开发和联调更有效率
 - 支持 `*.less` `*.module.less`
-- 内置路由组件支持页面切换动画
+- 支持页面切换动画
 
 ## 本地测试
 

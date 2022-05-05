@@ -6,10 +6,10 @@
 
 ## API
 
-| 参数    | 说明     | 类型        | 默认值 |
-| ------- | -------- | ----------- | ------ |
-| icon    | 图片     | ReactNode   | -      |
-| title   | 标题     | ReactNode   | -      |
-| desc    | 补充描述 | ReactNode   | -      |
-| extra   | 额外信息 | ReactNode   | -      |
-| actions | 操作     | ReactNode[] | -      |
+| 参数    | 说明     | 类型          | 默认值 |
+| ------- | -------- | ------------- | ------ |
+| icon    | 图片     | `ReactNode`   | -      |
+| title   | 标题     | `ReactNode`   | -      |
+| desc    | 补充描述 | `ReactNode`   | -      |
+| extra   | 额外信息 | `ReactNode`   | -      |
+| actions | 操作     | `ReactNode[]` | -      |

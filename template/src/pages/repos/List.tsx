@@ -12,7 +12,7 @@ const ListPage = () => {
   });
 
   return (
-    <PageContainer>
+    <PageContainer title='列表页'>
       <div style={{ padding: 15 }}>
         {loading && (
           <div style={{ padding: 50, display: 'flex', justifyContent: 'center', color: 'gray' }}>
