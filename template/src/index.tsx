@@ -9,23 +9,17 @@ import routes from './routes';
 // import reportWebVitals from './reportWebVitals';
 
 function App() {
-  // animated routes
-  return <AnimatedRoutes routes={routes} />
-
-  // // or not animated routes
-  // const elements = useRoutes(routes);
-  // return elements;
+  return (
+    // <React.StrictMode>
+    <HistoryRouter history={myHistory}>
+      <AnimatedRoutes routes={routes} />
+    </HistoryRouter>
+    // </React.StrictMode>
+  )
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root') as Element);
-
-root.render(
-  // <React.StrictMode>
-  <HistoryRouter history={myHistory}>
-    <App />
-  </HistoryRouter>
-  // </React.StrictMode>
-);
+root.render(<App />);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -1,17 +1,25 @@
 import React from 'react';
-import { RoutesProps, RouteObject } from 'react-router-dom';
+import { RoutesProps, RouteObject, Routes } from 'react-router-dom';
 import TransitionRoutes from './TransitionRoutes';
 import createRoutes from './createRoutes';
 
 interface AnimatedRoutesProps extends RoutesProps {
   routes: RouteObject[];
+  animated?: boolean;
 }
 
-const AnimatedRoutes: React.FC<AnimatedRoutesProps> = ({ routes, ...restProps }) => {
+const AnimatedRoutes: React.FC<AnimatedRoutesProps> = ({
+  routes,
+  animated = true,
+  ...restProps
+}) => {
+  const elements = createRoutes(routes);
+  const RoutesComp = animated ? TransitionRoutes : Routes;
+
   return (
-    <TransitionRoutes {...restProps}>
-      {createRoutes(routes)}
-    </TransitionRoutes>
+    <RoutesComp {...restProps}>
+      {elements}
+    </RoutesComp>
   );
 }
 

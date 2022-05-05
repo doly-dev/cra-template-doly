@@ -9,15 +9,12 @@
 
 ## API
 
-| 参数   | 说明     | 类型            | 默认值 |
-| ------ | -------- | --------------- | ------ |
-| routes | 路由配置 | `RouteObject[]` | -      |
+| 参数     | 说明             | 类型            | 默认值 |
+| -------- | ---------------- | --------------- | ------ |
+| routes   | 路由配置         | `RouteObject[]` | -      |
+| animated | 关闭页面切换动画 | `boolean`       | `true` |
 
 ## 常见问题
-
-### 不使用页面切换动画
-
-`src/index.tsx` 中去掉 `AnimatedRoutes` ，改用 `react-router-dom` 的 `useRoutes` 。
 
 ### 非组件模块中使用 history
 
