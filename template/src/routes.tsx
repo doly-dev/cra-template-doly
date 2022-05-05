@@ -1,15 +1,5 @@
-import { Suspense, lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
-import { PageLoading } from './components/PageLoader';
-
-const asyncComponent = (...args: Parameters<typeof lazy>) => {
-  const Comp = lazy(...args);
-  return (
-    <Suspense fallback={<PageLoading />}>
-      <Comp />
-    </Suspense>
-  )
-}
+import asyncComponent from './components/asyncComponent';
 
 const routes: RouteObject[] = [
   {

@@ -8,10 +8,14 @@ interface PageContainerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
 
 const PageContainer = React.forwardRef<HTMLDivElement, PageContainerProps>(
   ({ children, className, title, ...restProps }, ref) => {
-
-    React.useEffect(() => {
+    // 设置标题
+    const setPageTitle = React.useCallback(() => {
       document.title = title || '';
     }, [title]);
+
+    React.useEffect(() => {
+      setPageTitle();
+    }, [setPageTitle]);
 
     return (
       <div {...restProps} className={classnames(styles.page, className)} ref={ref}>
