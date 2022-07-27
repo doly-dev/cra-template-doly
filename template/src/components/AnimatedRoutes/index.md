@@ -14,6 +14,20 @@
 | routes   | 路由配置         | `RouteObject[]` | -      |
 | animated | 关闭页面切换动画 | `boolean`       | `true` |
 
+### RouteObject
+
+```typescript
+// import { RouteObject } from 'react-router-dom';
+
+export interface RouteObject {
+  caseSensitive?: boolean;
+  children?: RouteObject[];
+  element?: React.ReactNode;
+  index?: boolean;
+  path?: string;
+}
+```
+
 ## 常见问题
 
 ### 非组件模块中使用 history
