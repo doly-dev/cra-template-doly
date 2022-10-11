@@ -1,4 +1,4 @@
-const delay = require('mocker-api/lib/delay');
+import { mockData } from './utils';
 
 const data = [
   {
@@ -15,13 +15,12 @@ const data = [
   }
 ];
 
-module.exports = delay(
-  {
-    'GET /users/doly-dev/repos': data,
-    'GET /repos/doly-dev/:repoName': (req, res) => {
-      const { repoName } = req.params;
-      res.send(data.find((item) => item.name === repoName));
-    }
-  },
-  1000
-);
+export default {
+  'GET /users/doly-dev/repos': mockData({ data }),
+  'GET /repos/doly-dev/:repoName': mockData(async (req) => {
+    const { repoName } = req.params;
+    return {
+      data: data.find((item) => item.name === repoName)
+    };
+  })
+};

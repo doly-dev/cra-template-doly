@@ -1,5 +1,9 @@
 import request from '@/utils/request';
 
-export async function login() {
-  return request<API.Login>('/api/login', { headersToken: false });
+// 登录
+export function login(data: {
+  username: string;
+  password: string;
+}) {
+  return request<API.Login>('/api/login', { data }, false);
 }

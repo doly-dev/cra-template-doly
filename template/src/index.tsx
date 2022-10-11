@@ -1,5 +1,4 @@
 import './index.less';
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 // ref: https://github.com/remix-run/react-router/issues/8264#issuecomment-991271554
 import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';

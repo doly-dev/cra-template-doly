@@ -10,7 +10,6 @@
       "zip": "node ./config/zip.js",
       "build:analyze": "env-cmd -r ./config/env.js -e default,prod cross-env GENERATE_SOURCEMAP=true BUILD_PATH=dist-analyze craco build",
       "analyze": "npm run build:analyze && source-map-explorer 'dist-analyze/static/js/*.js'",
-      "commit": "cz",
       "precommit": "lint-staged",
       "prettier": "prettier --write \"{src,config,mock}/**/*\"",
       "lint": "npm run lint:js && npm run lint:style",
@@ -18,7 +17,9 @@
       "lint:js": "eslint src --ext ts,tsx,js,jsx",
       "lint-fix:js": "npm run lint:js -- --fix",
       "lint:style": "stylelint src/**/*.less",
-      "lint-fix:style": "npm run lint:style -- --fix"
+      "lint-fix:style": "npm run lint:style -- --fix",
+      "tsc": "tsc --noEmit",
+      "commit": "cz"
     },
     "cracoConfig": "config/config.js",
     "nodemonConfig": {
@@ -51,10 +52,10 @@
       }
     },
     "dependencies": {
-      "axios": "^0",
-      "classnames": "^2.3.1",
+      "axios": "^1.1.2",
+      "classnames": "^2.3.2",
       "history": "5",
-      "rc-hooks": "^2.2.3",
+      "rc-hooks": "^2.2.4",
       "react": "^18.2.0",
       "react-dom": "^18.2.0",
       "react-router-dom": "6",
@@ -63,16 +64,16 @@
       "store2": "^2.14.2"
     },
     "devDependencies": {
-      "@commitlint/cli": "^17.0.3",
-      "@commitlint/config-conventional": "^17.0.3",
-      "@craco/craco": "^7.0.0-alpha.7",
+      "@commitlint/cli": "^17.1.2",
+      "@commitlint/config-conventional": "^17.1.0",
+      "@craco/craco": "^7.0.0-alpha.8",
       "@testing-library/jest-dom": "^5.16.5",
-      "@testing-library/react": "^13.3.0",
+      "@testing-library/react": "^13.4.0",
       "@testing-library/user-event": "^14.4.3",
-      "@types/jest": "^28.1.7",
-      "@types/mockjs": "^1.0.6",
-      "@types/node": "^18.7.11",
-      "@types/react": "^18.0.17",
+      "@types/jest": "^29.1.2",
+      "@types/mockjs": "^1.0.7",
+      "@types/node": "^18.8.3",
+      "@types/react": "^18.0.21",
       "@types/react-dom": "^18.0.6",
       "@types/react-transition-group": "^4.4.5",
       "archiver": "^5.3.1",
@@ -86,24 +87,23 @@
       "lint-staged": "^13.0.3",
       "mkdirp": "^1.0.4",
       "mocker-api": "^2.9.5",
-      "nodemon": "^2.0.19",
+      "mockjs-extend": "^1.1.2",
+      "nodemon": "^2.0.20",
       "prettier": "^2.7.1",
       "prettier-plugin-two-style-order": "^1.0.1",
-      "source-map-explorer": "^2.5.2",
-      "stylelint": "^14.11.0",
+      "source-map-explorer": "^2.5.3",
+      "stylelint": "^14.13.0",
       "stylelint-config-css-modules": "^4.1.0",
       "stylelint-config-prettier": "^9.0.3",
       "stylelint-config-rational-order": "^0.1.2",
       "stylelint-config-standard": "^28.0.0",
       "stylelint-declaration-block-no-ignored-properties": "^2.5.0",
-      "stylelint-no-unsupported-browser-features": "^5.0.3",
-      "typescript": "^4.7.4",
+      "stylelint-no-unsupported-browser-features": "^6.0.1",
+      "ts-node": "^10.9.1",
+      "typescript": "^4.8.4",
       "web-vitals": "^2.1.4",
       "webpackbar": "^5.0.2",
       "yorkie": "^2.0.0"
-    },
-    "resolutions": {
-      "mini-css-extract-plugin": "2.4.5"
     }
   }
 }

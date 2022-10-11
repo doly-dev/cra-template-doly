@@ -1,3 +1,5 @@
+import { ResponseData } from "./common";
+
 export type RepoItem = {
   name: string;
   full_name: string;
@@ -7,8 +9,8 @@ export type RepoItem = {
 
 declare global {
   namespace API {
-    type ReposList = RepoItem[];
-    type ReposDetail = RepoItem;
+    type ReposList = ResponseData<{ data: RepoItem[] }>;
+    type ReposDetail = ResponseData<{ data: RepoItem }>;
   }
 }
 

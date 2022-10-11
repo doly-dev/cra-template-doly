@@ -1,11 +1,13 @@
-import type { ResponseConstructor } from './common';
+import { ResponseData } from './common';
 
 declare global {
   namespace API {
-    type Login = ResponseConstructor<{
-      username: string;
-      mobile: string;
-      token: string;
+    type Login = ResponseData<{
+      data: {
+        username: string;
+        mobile: string;
+        token: string;
+      }
     }>;
   }
 }

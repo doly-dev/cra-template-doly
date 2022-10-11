@@ -6,6 +6,7 @@ module.exports = {
   },
   rules: {
     'jsx-a11y/anchor-is-valid': 0,
-    'no-restricted-globals': 0
+    'no-restricted-globals': 0,
+    'import/no-anonymous-default-export': 0
   }
 };

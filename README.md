@@ -30,6 +30,10 @@ yarn create react-app my-app --template doly
 ## 本地测试
 
 > [Custom Templates](https://create-react-app.dev/docs/custom-templates/)
+>
+> ⚠️ 如遇到提示 `You are running 'create-react-app' 4.0.3, which is behind the latest release (5.0.1).`
+>
+> 请尝试运行 `npx clear-npx-cache`
 
 ```bash
 npx create-react-app my-app --template file:../path/to/your/template/cra-template-[template-name]
