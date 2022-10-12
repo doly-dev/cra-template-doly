@@ -38,7 +38,7 @@ const Home = () => {
   };
 
   return (
-    <PageContainer title="首页">
+    <PageContainer>
       <div className={styles.wrapper}>
         <h1>cra-template-doly</h1>
         <p>欢迎使用！</p>

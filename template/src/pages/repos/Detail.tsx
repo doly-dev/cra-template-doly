@@ -8,7 +8,7 @@ const DetailPage = () => {
   const { data, loading } = useAsync(() => getReposByName(name!).then(res => res.data));
 
   return (
-    <PageContainer title="详情页">
+    <PageContainer>
       <div style={{ padding: 15 }}>
         {loading && (
           <div style={{ padding: 50, display: 'flex', justifyContent: 'center', color: 'gray' }}>

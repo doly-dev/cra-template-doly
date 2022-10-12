@@ -1,5 +1,5 @@
 import { RouteObject } from 'react-router-dom';
-import asyncComponent from './components/asyncComponent';
+import AsyncComponent from './components/AsyncComponent';
 
 const routes: RouteObject[] = [
   {
@@ -7,24 +7,24 @@ const routes: RouteObject[] = [
     children: [
       {
         index: true,
-        element: asyncComponent(() => import('./pages/home'))
+        element: <AsyncComponent component={() => import('./pages/home')} title='首页' />
       },
       {
         path: 'repos',
         children: [
           {
             path: 'list',
-            element: asyncComponent(() => import('./pages/repos/List'))
+            element: <AsyncComponent component={() => import('./pages/repos/List')} title='列表页' />
           },
           {
             path: 'detail/:name',
-            element: asyncComponent(() => import('./pages/repos/Detail'))
+            element: <AsyncComponent component={() => import('./pages/repos/Detail')} title='详情页' />
           }
         ]
       },
       {
         path: '*',
-        element: asyncComponent(() => import('./pages/404'))
+        element: <AsyncComponent component={() => import('./pages/404')} title='404' />
       }
     ]
   }

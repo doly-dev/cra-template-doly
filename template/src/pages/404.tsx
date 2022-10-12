@@ -7,7 +7,7 @@ const NotFoundPage = () => {
   const navigate = useNavigate();
 
   return (
-    <PageContainer title='页面不存在'>
+    <PageContainer>
       <Exception
         title="404"
         desc="抱歉，你访问的页面不存在"
