@@ -37,27 +37,13 @@ export const mockData = (data: MockParam = {}) => {
 }
 
 // 模拟分页数据
-export const mockPageData = (pageData: MockParam = {}) => {
-  return async (req: Request, res: Response) => {
-    await waitTime(DELAY_TIME);
-
-    let realData = pageData;
-    if (typeof pageData === 'function') {
-      realData = await pageData(req, res);
-      if (!realData) {
-        return;
-      }
+export const mockPageData = (pageData: Record<string, any> = {}) => {
+  return mockData({
+    data: {
+      'pageData|10': [pageData], // 对象列表
+      curPage: 1, //  页码
+      pageSize: 10, //  每页记录数
+      'total|11-150': 20, //  总记录数
     }
-
-    const result = Mockjs.mock({
-      ...ResponseBasicConstructor,
-      data: {
-        'pageData|10': [realData], // 对象列表
-        curPage: 1, //  页码
-        pageSize: 10, //  每页记录数
-        'total|11-150': 20, //  总记录数
-      }
-    });
-    res.send(result);
-  }
+  });
 }
