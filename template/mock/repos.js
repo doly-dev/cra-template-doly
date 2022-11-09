@@ -1,4 +1,4 @@
-import { mockData } from './utils';
+const { mockData } = require('./utils');
 
 const data = [
   {
@@ -15,7 +15,7 @@ const data = [
   }
 ];
 
-export default {
+module.exports = {
   'GET /users/doly-dev/repos': mockData({ data }),
   'GET /repos/doly-dev/:repoName': mockData(async (req) => {
     const { repoName } = req.params;

@@ -1,6 +1,6 @@
-import { mockData } from './utils';
+const { mockData } = require('./utils');
 
-export default {
+module.exports = {
   'POST /api/login': mockData({
     data: {
       username: '@cname',

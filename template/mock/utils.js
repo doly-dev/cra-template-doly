@@ -1,7 +1,6 @@
-import { Request, Response } from 'express';
-import { waitTime } from 'util-helpers';
-import Mockjs from 'mockjs';
-import 'mockjs-extend';
+const { waitTime } = require('util-helpers');
+const Mockjs = require('mockjs');
+require('mockjs-extend');
 
 // 模拟接口延迟时间
 const DELAY_TIME = 1000;
@@ -13,11 +12,11 @@ const ResponseBasicConstructor = {
 }
 
 // 参数类型
-type MockParam = Record<string, any> | ((req: Request, res: Response) => Promise<Record<string, any>>);
+// type MockParam = Record<string, any> | ((req: Request, res: Response) => Promise<Record<string, any>>);
 
 // 模拟数据
-export const mockData = (data: MockParam = {}) => {
-  return async (req: Request, res: Response) => {
+const mockData = (data = {}) => {
+  return async (req, res) => {
     await waitTime(DELAY_TIME);
 
     let realData = data;
@@ -37,7 +36,7 @@ export const mockData = (data: MockParam = {}) => {
 }
 
 // 模拟分页数据
-export const mockPageData = (pageData: Record<string, any> = {}) => {
+const mockPageData = (pageData = {}) => {
   return mockData({
     data: {
       'pageData|10': [pageData], // 对象列表
@@ -46,4 +45,9 @@ export const mockPageData = (pageData: Record<string, any> = {}) => {
       'total|11-150': 20, //  总记录数
     }
   });
+}
+
+module.exports = {
+  mockData,
+  mockPageData
 }
