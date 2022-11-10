@@ -4,7 +4,7 @@
 
 ## API
 
-| 参数      | 说明     | 类型                                         | 默认值 |
-| --------- | -------- | -------------------------------------------- | ------ |
-| component | 异步组件 | `() => Promise<{ default: Component<any> }>` | -      |
-| title     | 页面标题 | `string`                                     | -      |
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| component | 同步/异步组件 | `(() => Promise<{ default: Component<any> }>) \| ReactElement` | - |
+| title | 页面标题 | `string` | - |
