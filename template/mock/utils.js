@@ -1,14 +1,13 @@
 const { waitTime } = require('util-helpers');
-const Mockjs = require('mockjs');
-require('mockjs-extend');
+const { Mockjs } = require('mockjs-extend');
 
 // 模拟接口延迟时间
 const DELAY_TIME = 1000;
 
 // 响应数据基础结构
 const ResponseBasicConstructor = {
-  errCode: '0000',  // 响应码 0000-成功
-  errMsg: 'mock success', // 响应信息
+  errCode: '0000', // 响应码 0000-成功
+  errMsg: 'mock success' // 响应信息
 }
 
 // 参数类型
@@ -42,7 +41,7 @@ const mockPageData = (pageData = {}) => {
       'pageData|10': [pageData], // 对象列表
       curPage: 1, //  页码
       pageSize: 10, //  每页记录数
-      'total|11-150': 20, //  总记录数
+      'total|11-150': 20 //  总记录数
     }
   });
 }
