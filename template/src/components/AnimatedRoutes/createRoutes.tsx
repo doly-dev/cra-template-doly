@@ -1,6 +1,6 @@
 import { Route, RouteObject } from 'react-router-dom';
 
-function createRoutes(routes: RouteObject[]) {
+function createRoutes(routes: (RouteObject & { lazy?: any; })[]) {
   return routes.map((route, i) => {
     const { children, index, ...rest } = route || {};
     const internalKey = `${index ? 'index' : (rest?.path || '')}-${i}`;
