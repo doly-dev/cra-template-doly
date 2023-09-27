@@ -25,10 +25,8 @@
     "node": ">=14"
   },
   "scripts": {
-    "commit": "cz"
-  },
-  "gitHooks": {
-    "commit-msg": "commitlint --edit \"$1\""
+    "commit": "cz",
+    "prepare": "husky install"
   },
   "config": {
     "commitizen": {
@@ -39,6 +37,6 @@
     "@commitlint/cli": "^16.0.0",
     "@commitlint/config-conventional": "^16.0.0",
     "cz-conventional-changelog": "^3.3.0",
-    "yorkie": "^2.0.0"
+    "husky": "^8.0.0"
   }
 }

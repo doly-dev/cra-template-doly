@@ -8,14 +8,18 @@
 
 ## 使用
 
-```bash
+```shell
 npx create-react-app my-app --template doly
+
+# or
+
+yarn create react-app my-app --template doly
 ```
 
-或
+然后，为了支持 `husky` `lint-staged` `eslint` `prettier` `commitlint` 首先运行：
 
-```bash
-yarn create react-app my-app --template doly
+```shell
+npx husky install
 ```
 
 ## 特性
