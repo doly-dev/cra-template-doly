@@ -58,7 +58,7 @@
       "react-router-dom": "^6.16.0",
       "react-scripts": "^5.0.1",
       "react-transition-group": "^4.4.5",
-      "util-helpers": "^4.20.8"
+      "ut2": "^1.5.2"
     },
     "devDependencies": {
       "@babel/plugin-proposal-private-property-in-object": "^7.21.11",

@@ -1,4 +1,4 @@
-const { waitTime } = require('util-helpers');
+const { sleep } = require('ut2');
 const { Mockjs } = require('mockjs-extend');
 
 // 模拟接口延迟时间
@@ -16,7 +16,7 @@ const ResponseBasicConstructor = {
 // 模拟数据
 const mockData = (data = {}) => {
   return async (req, res) => {
-    await waitTime(DELAY_TIME);
+    await sleep(DELAY_TIME);
 
     let realData = data;
     if (typeof data === 'function') {
