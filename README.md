@@ -19,7 +19,7 @@ yarn create react-app my-app --template doly
 然后，为了支持 `husky` `lint-staged` `eslint` `prettier` `commitlint` 首先运行：
 
 ```shell
-npx husky install
+npx husky
 ```
 
 ## 特性
