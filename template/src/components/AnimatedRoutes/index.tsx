@@ -1,26 +1,41 @@
-import React from 'react';
-import { RoutesProps, RouteObject, Routes } from 'react-router-dom';
-import TransitionRoutes from './TransitionRoutes';
-import createRoutes from './createRoutes';
+import { IndexRouteObject, NonIndexRouteObject, RouteObject } from 'react-router-dom';
+import AnimatedRoutes, { AnimatedRoutesProps } from './AnimatedRoutes';
+import AsyncComponent, { AsyncComponentProps } from '../AsyncComponent';
 
-interface AnimatedRoutesProps extends RoutesProps {
-  routes: RouteObject[];
-  animated?: boolean;
+type CustomRouteExtend = {
+  element?: AsyncComponentProps['component'];
+  title?: AsyncComponentProps['title'];
+  children?: AnimatedRouteObject[];
+};
+type CustomIndexRouteObject = Omit<IndexRouteObject, 'element'> &
+  Omit<CustomRouteExtend, 'children'>;
+type CustomNonIndexRouteObject = Omit<NonIndexRouteObject, 'element' | 'children'> &
+  CustomRouteExtend;
+
+export type AnimatedRouteObject = CustomIndexRouteObject | CustomNonIndexRouteObject;
+
+function transformCustomRoutes(routesConfig: AnimatedRouteObject[]): RouteObject[] {
+  return routesConfig.map(({ title, element, children, index, ...rest }) => {
+    const newElement = element ? <AsyncComponent component={element} title={title} /> : element;
+    if (index) {
+      return {
+        index,
+        element: newElement,
+        ...rest
+      };
+    }
+    return {
+      element: newElement,
+      children: Array.isArray(children) ? transformCustomRoutes(children) : children,
+      ...rest
+    };
+  });
 }
 
-const AnimatedRoutes: React.FC<AnimatedRoutesProps> = ({
-  routes,
-  animated = true,
-  ...restProps
-}) => {
-  const elements = createRoutes(routes);
-  const RoutesComp = animated ? TransitionRoutes : Routes;
+const WrapperAnimatedRoutes: React.FC<
+  Omit<AnimatedRoutesProps, 'routes'> & { routes: AnimatedRouteObject[] }
+> = ({ routes, ...restProps }) => {
+  return <AnimatedRoutes routes={transformCustomRoutes(routes)} {...restProps} />;
+};
 
-  return (
-    <RoutesComp {...restProps}>
-      {elements}
-    </RoutesComp>
-  );
-}
-
-export default AnimatedRoutes;
+export default WrapperAnimatedRoutes;

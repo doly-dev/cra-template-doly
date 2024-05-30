@@ -1,17 +1,7 @@
-import { createHashRouter, createRoutesFromElements, IndexRouteObject, NonIndexRouteObject, Route, RouteObject } from 'react-router-dom';
-import AnimatedRoutes from './components/AnimatedRoutes';
-import AsyncComponent, { AsyncComponentProps } from './components/AsyncComponent';
+import { Route, createHashRouter, createRoutesFromElements } from 'react-router-dom';
+import AnimatedRoutes, { AnimatedRouteObject } from './components/AnimatedRoutes';
 
-type CustomRouteExtend = {
-  element?: AsyncComponentProps['component'];
-  title?: AsyncComponentProps['title'];
-  children?: CustomRouteObject[];
-};
-type CustomIndexRouteObject = Omit<IndexRouteObject, 'element'> & Omit<CustomRouteExtend, 'children'>;
-type CustomNonIndexRouteObject = Omit<NonIndexRouteObject, 'element' | 'children'> & CustomRouteExtend;
-type CustomRouteObject = CustomIndexRouteObject | CustomNonIndexRouteObject;
-
-const routes: CustomRouteObject[] = [
+const routes: AnimatedRouteObject[] = [
   {
     path: '/',
     children: [
@@ -44,24 +34,8 @@ const routes: CustomRouteObject[] = [
   }
 ];
 
-function transformCustomRoutes(routesConfig: CustomRouteObject[]): RouteObject[] {
-  return routesConfig.map(({ title, element, children, index, ...rest }) => {
-    const newElement = element ? <AsyncComponent component={element} title={title} /> : element;
-    if (index) {
-      return {
-        index,
-        element: newElement,
-        ...rest
-      };
-    }
-    return {
-      element: newElement,
-      children: Array.isArray(children) ? transformCustomRoutes(children) : children,
-      ...rest
-    }
-  });
-}
-
-const router = createHashRouter(createRoutesFromElements(<Route path='*' element={<AnimatedRoutes routes={transformCustomRoutes(routes)} />} />));
+const router = createHashRouter(
+  createRoutesFromElements(<Route path="*" element={<AnimatedRoutes routes={routes} />} />)
+);
 
 export default router;
