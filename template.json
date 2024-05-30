@@ -15,7 +15,7 @@
       "lint:style": "stylelint src/**/*.{css,less}",
       "tsc": "tsc --noEmit",
       "commit": "cz",
-      "prepare": "husky"
+      "prepare": "husky install"
     },
     "cracoConfig": "config/config.js",
     "nodemonConfig": {
@@ -94,7 +94,7 @@
       "stylelint-no-unsupported-browser-features": "^6.1.0",
       "ts-node": "^10.9.2",
       "typescript": "^4.9.5",
-      "web-vitals": "^2.1.4",
+      "web-vitals": "^4.0.1",
       "webpackbar": "^6.0.1"
     }
   }

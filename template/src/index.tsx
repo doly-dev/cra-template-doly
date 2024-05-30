@@ -8,10 +8,7 @@ import { PageLoading } from './components/PageLoader';
 function App() {
   return (
     // <React.StrictMode>
-    <RouterProvider
-      router={router}
-      fallbackElement={<PageLoading />}
-    />
+    <RouterProvider router={router} fallbackElement={<PageLoading />} />
     // </React.StrictMode>
   )
 }
