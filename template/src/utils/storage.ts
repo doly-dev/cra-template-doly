@@ -9,7 +9,7 @@ const cache = new Cache(STORE_NAMESPACE, {
 // 登录信息
 const LOGIN_INFO_KEY = 'loginInfo';
 
-export const getLoginInfo = () => cache.get(LOGIN_INFO_KEY) as (API.Login['data'] | undefined);
+export const getLoginInfo = () => cache.get(LOGIN_INFO_KEY) as API.Login['data'] | undefined;
 export const setLoginInfo = (data: API.Login['data']) => {
   cache.set(LOGIN_INFO_KEY, data);
 };

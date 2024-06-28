@@ -11,10 +11,7 @@ const NotFoundPage = () => {
       <Exception
         title="404"
         desc="抱歉，你访问的页面不存在"
-        actions={[
-          <a onClick={() => navigate(-1)}>返回上一页</a>,
-          <Link to='/'>返回首页</Link>
-        ]}
+        actions={[<a onClick={() => navigate(-1)}>返回上一页</a>, <Link to="/">返回首页</Link>]}
       />
     </PageContainer>
   );

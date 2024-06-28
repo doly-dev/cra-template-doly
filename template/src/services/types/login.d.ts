@@ -7,9 +7,9 @@ declare global {
         username: string;
         mobile: string;
         token: string;
-      }
+      };
     }>;
   }
 }
 
-export { };
+export {};

@@ -2,12 +2,14 @@
 
 CNAME
 LICENSE
+logs
+*.log
 package.json
 package-lock.json
-
 *.lock
 yarn-error.log
 *debug.log
+pnpm-lock.yaml
 
 .gitignore
 .prettierignore
@@ -18,9 +20,12 @@ yarn-error.log
 *.svg
 *.png
 *.jpg
+*.jpeg
 *.gif
 *.bmp
+*.ico
 
 /dist
+/dist-analyze
 /build
-/public
+/coverage

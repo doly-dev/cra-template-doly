@@ -8,7 +8,7 @@ const DELAY_TIME = 1000;
 const ResponseBasicConstructor = {
   errCode: '0000', // 响应码 0000-成功
   errMsg: 'mock success' // 响应信息
-}
+};
 
 // 参数类型
 // type MockParam = Record<string, any> | ((req: Request, res: Response) => Promise<Record<string, any>>);
@@ -31,8 +31,8 @@ const mockData = (data = {}) => {
       ...realData
     });
     res.send(result);
-  }
-}
+  };
+};
 
 // 模拟分页数据
 const mockPageData = (pageData = {}) => {
@@ -44,9 +44,9 @@ const mockPageData = (pageData = {}) => {
       'total|11-150': 20 //  总记录数
     }
   });
-}
+};
 
 module.exports = {
   mockData,
   mockPageData
-}
+};

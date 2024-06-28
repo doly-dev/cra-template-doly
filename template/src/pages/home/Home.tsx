@@ -20,13 +20,16 @@ const pages = [
 
 const Home = () => {
   const [logined, setLogined] = useState(() => !!getLoginInfo()?.token);
-  const { loading, run } = useAsync(() => login({ username: 'test', password: '12345' }).then(res => res.data), {
-    autoRun: false,
-    onSuccess: (res) => {
-      setLoginInfo(res);
-      setLogined(true);
+  const { loading, run } = useAsync(
+    () => login({ username: 'test', password: '12345' }).then((res) => res.data),
+    {
+      autoRun: false,
+      onSuccess: (res) => {
+        setLoginInfo(res);
+        setLogined(true);
+      }
     }
-  });
+  );
 
   const toggleLogin = () => {
     if (logined) {

@@ -11,5 +11,5 @@ export type ResponsePageData<T extends Record<string, any> = object> = ResponseD
     curPage: number; // 页码
     pageSize: number; // 每页记录数
     total: number; // 总记录数
-  }
+  };
 }>;

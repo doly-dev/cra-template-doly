@@ -1,4 +1,4 @@
-import { ResponseData } from "./common";
+import { ResponseData } from './common';
 
 export type RepoItem = {
   name: string;
@@ -14,4 +14,4 @@ declare global {
   }
 }
 
-export { };
+export {};

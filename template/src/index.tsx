@@ -10,7 +10,7 @@ function App() {
     // <React.StrictMode>
     <RouterProvider router={router} fallbackElement={<PageLoading />} />
     // </React.StrictMode>
-  )
+  );
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);

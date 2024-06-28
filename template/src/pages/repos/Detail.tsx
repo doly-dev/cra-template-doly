@@ -5,7 +5,7 @@ import { getReposByName } from '@/services/repos';
 
 const DetailPage = () => {
   const { name } = useParams();
-  const { data, loading } = useAsync(() => getReposByName(name!).then(res => res.data));
+  const { data, loading } = useAsync(() => getReposByName(name!).then((res) => res.data));
 
   return (
     <PageContainer>
