@@ -1,3 +1,4 @@
+import { isArray } from 'ut2';
 import { IndexRouteObject, NonIndexRouteObject, RouteObject } from 'react-router-dom';
 import AnimatedRoutes, { AnimatedRoutesProps } from './AnimatedRoutes';
 import AsyncComponent, { AsyncComponentProps } from '../AsyncComponent';
@@ -26,7 +27,7 @@ function transformCustomRoutes(routesConfig: AnimatedRouteObject[]): RouteObject
     }
     return {
       element: newElement,
-      children: Array.isArray(children) ? transformCustomRoutes(children) : children,
+      children: isArray(children) ? transformCustomRoutes(children) : children,
       ...rest
     };
   });

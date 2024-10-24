@@ -34,6 +34,14 @@ const routes: AnimatedRouteObject[] = [
   }
 ];
 
+/**
+ * 页面跳转可以使用该模块
+ *
+ * @example
+ * import router from '@/router'
+ *
+ * router.navigate('/page')
+ */
 const router = createHashRouter(
   createRoutesFromElements(<Route path="*" element={<AnimatedRoutes routes={routes} />} />)
 );

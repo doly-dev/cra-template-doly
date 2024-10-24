@@ -2,7 +2,7 @@ const { sleep } = require('ut2');
 const { Mockjs } = require('mockjs-extend');
 
 // 模拟接口延迟时间
-const DELAY_TIME = 1000;
+const DELAY_TIME = 100;
 
 // 响应数据基础结构
 const ResponseBasicConstructor = {
