@@ -67,7 +67,7 @@ module.exports = {
           express.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 })
         );
 
-        apiMocker(devServer.app, glob.sync(path.resolve(cwd, 'mock/*.[t|j]s')));
+        apiMocker(devServer.app, glob.sync(path.resolve(cwd, 'mock/**/*.mock.[t|j]s')));
         return middlewares;
       };
     }

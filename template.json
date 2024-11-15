@@ -47,10 +47,10 @@
       "rc-hooks": "^3.0.15",
       "react": "^18.3.1",
       "react-dom": "^18.3.1",
-      "react-router-dom": "^6.27.0",
+      "react-router-dom": "^6.28.0",
       "react-scripts": "^5.0.1",
       "react-transition-group": "^4.4.5",
-      "ut2": "^1.13.0"
+      "ut2": "^1.14.0"
     },
     "devDependencies": {
       "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
@@ -59,12 +59,12 @@
       "@commitlint/cz-commitlint": "^17.8.1",
       "@craco/craco": "^7.1.0",
       "@testing-library/dom": "^9.3.4",
-      "@testing-library/jest-dom": "^6.6.2",
+      "@testing-library/jest-dom": "^6.6.3",
       "@testing-library/react": "^14.3.1",
       "@testing-library/user-event": "^14.5.2",
       "@types/jest": "^29.5.14",
       "@types/mockjs": "^1.0.10",
-      "@types/node": "^20.17.0",
+      "@types/node": "^20.17.6",
       "@types/react": "^18.3.12",
       "@types/react-dom": "^18.3.1",
       "@types/react-transition-group": "^4.4.11",
