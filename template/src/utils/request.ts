@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { ResponseType } from '@/services/types/common';
+import { TResponse } from '@/services/types/common';
 import { getLoginInfo } from './storage';
 
 // const RESPONSE_MESSAGE_FIELD = 'errMsg'; // 响应信息字段名
@@ -19,7 +19,7 @@ interface RequestOptions<D = any> extends Omit<AxiosRequestConfig<D>, 'url' | 'h
  * 可在该模块编写部分业务逻辑，如请求头token，请求失败/登录过期/服务错误等处理
  * axios 文档：https://github.com/axios/axios#request-config
  */
-function request<T extends ResponseType>(url: string, options?: RequestOptions) {
+function request<T extends TResponse>(url: string, options?: RequestOptions) {
   const {
     headers,
     // showLoading = true,
@@ -67,7 +67,7 @@ function request<T extends ResponseType>(url: string, options?: RequestOptions) 
 
       return data;
     })
-    .catch((err: ResponseType) => {
+    .catch((err) => {
       // toastHandler?.close();
 
       // // 请求失败处理，一般是全局错误提示

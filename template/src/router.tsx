@@ -1,7 +1,7 @@
 import { Route, createHashRouter, createRoutesFromElements } from 'react-router-dom';
-import AnimatedRoutes, { AnimatedRouteObject } from './components/AnimatedRoutes';
+import AnimatedRoutes, { TAnimatedRouteObject } from './components/AnimatedRoutes';
 
-const routes: AnimatedRouteObject[] = [
+const routes: TAnimatedRouteObject[] = [
   {
     path: '/',
     children: [

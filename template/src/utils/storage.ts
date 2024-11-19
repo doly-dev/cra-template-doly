@@ -1,4 +1,4 @@
-import { LoginDataType } from '@/services/types/login';
+import { TLoginData } from '@/services/types/login';
 import { Cache, Storage } from 'cache2';
 
 // 本地存储命名空间，建议改为项目名
@@ -18,8 +18,8 @@ export const local = new Storage(window.localStorage, { prefix });
 
 // 登录信息
 const LOGIN_INFO_KEY = 'loginInfo';
-export const getLoginInfo = () => sessionCache.get(LOGIN_INFO_KEY) as LoginDataType | undefined;
-export const setLoginInfo = (data: LoginDataType) => {
+export const getLoginInfo = () => sessionCache.get<TLoginData>(LOGIN_INFO_KEY);
+export const setLoginInfo = (data: TLoginData) => {
   sessionCache.set(LOGIN_INFO_KEY, data);
 };
 export const removeLoginInfo = () => {

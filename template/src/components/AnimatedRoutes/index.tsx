@@ -3,19 +3,17 @@ import { IndexRouteObject, NonIndexRouteObject, RouteObject } from 'react-router
 import AnimatedRoutes, { AnimatedRoutesProps } from './AnimatedRoutes';
 import AsyncComponent, { AsyncComponentProps } from '../AsyncComponent';
 
-type CustomRouteExtend = {
+type TCustomRoute = {
   element?: AsyncComponentProps['component'];
   title?: AsyncComponentProps['title'];
-  children?: AnimatedRouteObject[];
+  children?: TAnimatedRouteObject[];
 };
-type CustomIndexRouteObject = Omit<IndexRouteObject, 'element'> &
-  Omit<CustomRouteExtend, 'children'>;
-type CustomNonIndexRouteObject = Omit<NonIndexRouteObject, 'element' | 'children'> &
-  CustomRouteExtend;
+type TCustomIndexRouteObject = Omit<IndexRouteObject, 'element'> & Omit<TCustomRoute, 'children'>;
+type TCustomNonIndexRouteObject = Omit<NonIndexRouteObject, 'element' | 'children'> & TCustomRoute;
 
-export type AnimatedRouteObject = CustomIndexRouteObject | CustomNonIndexRouteObject;
+export type TAnimatedRouteObject = TCustomIndexRouteObject | TCustomNonIndexRouteObject;
 
-function transformCustomRoutes(routesConfig: AnimatedRouteObject[]): RouteObject[] {
+function transformCustomRoutes(routesConfig: TAnimatedRouteObject[]): RouteObject[] {
   return routesConfig.map(({ title, element, children, index, ...rest }) => {
     const newElement = element ? <AsyncComponent component={element} title={title} /> : element;
     if (index) {
@@ -34,7 +32,7 @@ function transformCustomRoutes(routesConfig: AnimatedRouteObject[]): RouteObject
 }
 
 const WrapperAnimatedRoutes: React.FC<
-  Omit<AnimatedRoutesProps, 'routes'> & { routes: AnimatedRouteObject[] }
+  Omit<AnimatedRoutesProps, 'routes'> & { routes: TAnimatedRouteObject[] }
 > = ({ routes, ...restProps }) => {
   return <AnimatedRoutes routes={transformCustomRoutes(routes)} {...restProps} />;
 };
