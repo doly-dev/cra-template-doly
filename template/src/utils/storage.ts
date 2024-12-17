@@ -1,20 +1,23 @@
 import { TLoginData } from '@/services/types/login';
 import { Cache, Storage } from 'cache2';
 
-// 本地存储命名空间，建议改为项目名
-const STORE_NAMESPACE = 'vite-template-doly';
+// 本地存储命名空间，建议改为项目名，区分同域下不同应用的缓存
+const STORE_NAMESPACE = 'cra-template-doly';
+
+// 支持TTL的浏览器存储
 export const sessionCache = new Cache(STORE_NAMESPACE, {
   storage: window.sessionStorage
 });
 export const localCache = new Cache(STORE_NAMESPACE, {
   storage: window.localStorage
 });
+export const memoryCache = new Cache(STORE_NAMESPACE);
 
-// 相同域名下的单页应用，使用前缀区分不同应用的缓存
+// 浏览器存储
 const prefix = STORE_NAMESPACE + '_';
-export const memoryCache = new Cache(STORE_NAMESPACE, { prefix });
 export const session = new Storage(window.sessionStorage, { prefix });
 export const local = new Storage(window.localStorage, { prefix });
+export const memory = new Storage(undefined, { prefix });
 
 // 登录信息
 const LOGIN_INFO_KEY = 'loginInfo';

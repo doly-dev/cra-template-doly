@@ -27,7 +27,7 @@ const weixin = /micromessenger/.test(ua);
 /**
  * @description 运行环境变量
  */
-const uaEnv = {
+const uaUtil = {
   /**
    * 判断是否在某个运行环境。
    *
@@ -68,4 +68,4 @@ const uaEnv = {
   weixin
 } as const;
 
-export default uaEnv;
+export default uaUtil;
