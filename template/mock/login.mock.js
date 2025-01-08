@@ -1,7 +1,7 @@
-const { mockData } = require('./utils');
+const mockUtil = require('./utils');
 
 module.exports = {
-  'POST /api/login': mockData({
+  'POST /api/login': mockUtil.mockData({
     data: {
       username: '@cname',
       mobile: '@mobile',

@@ -1,4 +1,4 @@
-const { mockData } = require('./utils');
+const mockUtil = require('./utils');
 
 const data = [
   {
@@ -16,8 +16,8 @@ const data = [
 ];
 
 module.exports = {
-  'GET /users/doly-dev/repos': mockData({ data }),
-  'GET /repos/doly-dev/:repoName': mockData(async (req) => {
+  'GET /users/doly-dev/repos': mockUtil.mockData({ data }),
+  'GET /repos/doly-dev/:repoName': mockUtil.mockData(async (req) => {
     const { repoName } = req.params;
     return {
       data: data.find((item) => item.name === repoName)
