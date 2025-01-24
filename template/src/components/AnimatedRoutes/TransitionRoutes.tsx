@@ -11,27 +11,26 @@ import { TransitionGroup } from 'react-transition-group';
 import CSSTransition from './CSSTransition';
 import './index.less';
 
+const prefixClass = 'route-group';
+
 const TransitionRoutes: React.FC<RoutesProps> = (props) => {
   const location = useLocation();
   const action = useNavigationType();
 
-  const classNames = action === 'POP' ? 'route-backward' : 'route-forward';
-
   return (
     <TransitionGroup
-      component={null}
-      childFactory={(child) =>
-        React.cloneElement(child, {
-          classNames
-        })
-      }
+      className={`${prefixClass} ${prefixClass}-${action === 'POP' ? 'backward' : 'forward'}`}
     >
-      <CSSTransition key={location.pathname}>
-        <div className="route-animated">
-          <LocationContext.Provider value={{ location, navigationType: action }}>
-            <Routes {...props} />
-          </LocationContext.Provider>
-        </div>
+      <CSSTransition
+        key={location.pathname}
+        divProps={{
+          className: `${prefixClass}-item`
+        }}
+        classNames={`${prefixClass}-item`}
+      >
+        <LocationContext.Provider value={{ location, navigationType: action }}>
+          <Routes {...props} />
+        </LocationContext.Provider>
       </CSSTransition>
     </TransitionGroup>
   );

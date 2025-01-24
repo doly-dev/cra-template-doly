@@ -1,40 +1,41 @@
-.route-animated {
-  position: absolute;
-  overflow: hidden;
-  inset: 0;
-}
+.route-group {
+  --transition: transform 0.3s;
 
-// ----- route transition start
-.route-forward-enter {
-  transform: translate3d(100%, 0, 0);
-}
+  &-item {
+    position: absolute;
+    overflow: hidden;
+    inset: 0;
+  }
 
-.route-forward-enter-active {
-  z-index: 2;
-  transform: translate3d(0, 0, 0);
-  transition: transform 0.3s;
-}
+  &-forward &-item {
+    &-enter {
+      transform: translate3d(100%, 0, 0);
+    }
+    &-enter-active {
+      z-index: 2;
+      transform: translate3d(0, 0, 0);
+      transition: var(--transition);
+    }
+    &-exit {
+      transform: translate3d(-20%, 0, 0);
+      transition: var(--transition);
+    }
+  }
 
-.route-forward-exit {
-  transform: translate3d(-20%, 0, 0);
-  transition: transform 0.3s;
+  &-backward &-item {
+    &-enter {
+      transform: translate3d(-20%, 0, 0);
+    }
+    &-enter-active {
+      transform: translate3d(0, 0, 0);
+      transition: var(--transition);
+    }
+    &-exit {
+      transform: translate3d(100%, 0, 0);
+      transition: var(--transition);
+    }
+    &-exit-active {
+      z-index: 2;
+    }
+  }
 }
-
-.route-backward-enter {
-  transform: translate3d(-20%, 0, 0);
-}
-
-.route-backward-enter-active {
-  transform: translate3d(0, 0, 0);
-  transition: transform 0.3s;
-}
-
-.route-backward-exit {
-  transform: translate3d(100%, 0, 0);
-  transition: transform 0.3s;
-}
-
-.route-backward-exit-active {
-  z-index: 2;
-}
-// ----- route transition end
