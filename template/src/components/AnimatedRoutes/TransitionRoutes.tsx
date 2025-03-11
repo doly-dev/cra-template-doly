@@ -1,18 +1,12 @@
 import React from 'react';
-// ref: https://github.com/remix-run/react-router/issues/8470#issuecomment-1086901183
-import {
-  useLocation,
-  useNavigationType,
-  Routes,
-  RoutesProps,
-  UNSAFE_LocationContext as LocationContext
-} from 'react-router-dom';
+import { useLocation, useNavigationType, Routes, RoutesProps } from 'react-router-dom';
 import { TransitionGroup } from 'react-transition-group';
 import CSSTransition from './CSSTransition';
 import './index.less';
 
 const prefixClass = 'route-group';
 
+// ref: https://github.com/remix-run/react-router/issues/8470#issuecomment-1086901183
 const TransitionRoutes: React.FC<RoutesProps> = (props) => {
   const location = useLocation();
   const action = useNavigationType();
@@ -28,9 +22,7 @@ const TransitionRoutes: React.FC<RoutesProps> = (props) => {
         }}
         classNames={`${prefixClass}-item`}
       >
-        <LocationContext.Provider value={{ location, navigationType: action }}>
-          <Routes {...props} />
-        </LocationContext.Provider>
+        <Routes location={location} {...props} />
       </CSSTransition>
     </TransitionGroup>
   );
