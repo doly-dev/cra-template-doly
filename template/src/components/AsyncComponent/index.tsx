@@ -1,10 +1,10 @@
-import React, { Suspense, lazy, useEffect } from 'react';
+import React, { Suspense, isValidElement, lazy, useEffect } from 'react';
 import { PageLoading } from '../PageLoader';
 
-type AsyncComp = Parameters<typeof lazy>[0];
+type LazyComp = ReturnType<typeof lazy>;
 
 export interface AsyncComponentProps {
-  component: AsyncComp | React.ReactElement;
+  component: LazyComp | React.ReactElement;
   title?: string;
 }
 
@@ -15,11 +15,11 @@ const AsyncComponent: React.FC<AsyncComponentProps> = ({ component, title = '' }
     }
   }, [title]);
 
-  if (React.isValidElement(component)) {
+  if (isValidElement(component)) {
     return component;
   }
 
-  const Comp = lazy(component as AsyncComp);
+  const Comp = component as LazyComp;
 
   return (
     <Suspense fallback={<PageLoading />}>

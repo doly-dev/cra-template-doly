@@ -9,24 +9,13 @@
 
 ## API
 
-| 参数     | 说明             | 类型            | 默认值 |
-| -------- | ---------------- | --------------- | ------ |
-| routes   | 路由配置         | `RouteObject[]` | -      |
-| animated | 关闭页面切换动画 | `boolean`       | `true` |
+| 参数   | 说明     | 类型            | 默认值 |
+| ------ | -------- | --------------- | ------ |
+| routes | 路由配置 | `RouteObject[]` | -      |
 
 ### RouteObject
 
-```typescript
-// import { RouteObject } from 'react-router-dom';
-
-export interface RouteObject {
-  caseSensitive?: boolean;
-  children?: RouteObject[];
-  element?: React.ReactNode;
-  index?: boolean;
-  path?: string;
-}
-```
+参考：[RouteObject](https://reactrouter.com/api/components/Route)
 
 ## 常见问题
 

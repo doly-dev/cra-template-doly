@@ -1,7 +1,11 @@
 import { Route, createHashRouter, createRoutesFromElements } from 'react-router-dom';
-import AnimatedRoutes, { TAnimatedRouteObject } from './components/AnimatedRoutes';
+import defineRoutes from './utils/defineRoutes';
+import AnimatedRoutes from './components/AnimatedRoutes';
 
-const routes: TAnimatedRouteObject[] = [
+/** 是否开启路由动画 */
+const EnableAnimatedRoutes = true;
+
+const routes = defineRoutes([
   {
     path: '/',
     children: [
@@ -32,7 +36,7 @@ const routes: TAnimatedRouteObject[] = [
       }
     ]
   }
-];
+]);
 
 /**
  * 页面跳转可以使用该模块
@@ -43,7 +47,9 @@ const routes: TAnimatedRouteObject[] = [
  * router.navigate('/page')
  */
 const router = createHashRouter(
-  createRoutesFromElements(<Route path="*" element={<AnimatedRoutes routes={routes} />} />)
+  EnableAnimatedRoutes
+    ? createRoutesFromElements(<Route path="*" element={<AnimatedRoutes routes={routes} />} />)
+    : routes
 );
 
 export default router;

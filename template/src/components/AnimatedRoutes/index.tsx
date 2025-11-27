@@ -1,40 +1,16 @@
-import { isArray } from 'ut2';
-import { IndexRouteObject, NonIndexRouteObject, RouteObject } from 'react-router-dom';
-import AnimatedRoutes, { AnimatedRoutesProps } from './AnimatedRoutes';
-import AsyncComponent, { AsyncComponentProps } from '../AsyncComponent';
+import React from 'react';
+import { RoutesProps, RouteObject } from 'react-router-dom';
+import TransitionRoutes from './TransitionRoutes';
+import createRoutes from './createRoutes';
 
-type TCustomRoute = {
-  element?: AsyncComponentProps['component'];
-  title?: AsyncComponentProps['title'];
-  children?: TAnimatedRouteObject[];
-};
-type TCustomIndexRouteObject = Omit<IndexRouteObject, 'element'> & Omit<TCustomRoute, 'children'>;
-type TCustomNonIndexRouteObject = Omit<NonIndexRouteObject, 'element' | 'children'> & TCustomRoute;
-
-export type TAnimatedRouteObject = TCustomIndexRouteObject | TCustomNonIndexRouteObject;
-
-function transformCustomRoutes(routesConfig: TAnimatedRouteObject[]): RouteObject[] {
-  return routesConfig.map(({ title, element, children, index, ...rest }) => {
-    const newElement = element ? <AsyncComponent component={element} title={title} /> : element;
-    if (index) {
-      return {
-        index,
-        element: newElement,
-        ...rest
-      };
-    }
-    return {
-      element: newElement,
-      children: isArray(children) ? transformCustomRoutes(children) : children,
-      ...rest
-    };
-  });
+export interface AnimatedRoutesProps extends Omit<RoutesProps, 'location'> {
+  routes: RouteObject[];
 }
 
-const WrapperAnimatedRoutes: React.FC<
-  Omit<AnimatedRoutesProps, 'routes'> & { routes: TAnimatedRouteObject[] }
-> = ({ routes, ...restProps }) => {
-  return <AnimatedRoutes routes={transformCustomRoutes(routes)} {...restProps} />;
+const AnimatedRoutes: React.FC<AnimatedRoutesProps> = ({ routes, ...restProps }) => {
+  const elements = createRoutes(routes);
+
+  return <TransitionRoutes {...restProps}>{elements}</TransitionRoutes>;
 };
 
-export default WrapperAnimatedRoutes;
+export default AnimatedRoutes;
